@@ -27,9 +27,23 @@
         <a class="nav-link disabled" href="#">Disabled</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <!-- <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    </form> -->
+    <ul class="navbar-nav my-2 my-lg-0">
+      <% if user_signed_in? %>
+      <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Your Profile <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><%= link_to "Edit your profile", edit_user_registration_path(current_user)%></li>
+        </ul>
+      </li>
+      <% else %>
+      <li><%= link_to "Log in", user_session_path %></li>
+      <li><%= link_to "Sign up", new_user_registration_path %></li>
+      <% end %>  
+    </ul>
   </div>
 </nav>
