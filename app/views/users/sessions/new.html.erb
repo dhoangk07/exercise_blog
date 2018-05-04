@@ -1,34 +1,30 @@
 <h2 align="center" class="log">Log in</h2>
-<%= form_for(resource, as: resource_name,html: {class: "form-horizontal center", role:"form"}, url: session_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, html: {class: "form-horizontal center", role:"form"}, url: session_path(resource_name)) do |f| %>
 <div class="container">
-      <div class='form-group'>
-        <div class='col-md-12'>
-          <%= f.email_field :email, class:'form-control', autofocus: true, autocomplete: "email", placeholder: "Enter your email", autofocus: true %>
-        </div>
+  <div class='form-group'>
+    <div class='col-md-12'>
+      <%= f.email_field :email, class:'form-control', autofocus: true, autocomplete: "email", placeholder: "Enter your email", autofocus: true %>
+    </div>
+  </div>
+
+  <div class='form-group'>
+    <div class='col-md-12'>
+      <%= f.password_field :password, class:'form-control', autocomple: "off", placeholder: "Enter your password" %>
+    </div>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class='form-group'>
+      <div class='control-label col-sm-2'>
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
       </div>
+    </div>
+  <% end %>
 
-      <div class='form-group'>
-        <div class='col-md-12'>
-          <%= f.password_field :password, class:'form-control', autocomple: "off", placeholder: "Enter your password" %>
-        </div>
-      </div>
-
-      <% if devise_mapping.rememberable? %>
-        <div class='form-group'>
-          <div class='control-label col-sm-2'>
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
-          </div>
-        </div>
-      <% end %>
-
-      <div class='form-group'>
-        <div class='col-md-12'>
-          <%= f.submit "Log in", class: 'btn btn-success btn-lg btn-block' %>
-        </div>
-      </div>
-
-      
+  <div class='form-group'>
+    <div class='col-md-12'>
+      <%= f.submit "Log in", class: 'btn btn-success btn-lg btn-block' %>
     </div>
   </div>
 </div>
