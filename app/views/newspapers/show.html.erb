@@ -1,20 +1,15 @@
-<h2 class="sample"> This is <%= @newspaper.title %> Newspaper</h2>
+<h2 class="sample" align="center"> This is <%= @newspaper.title %> Newspaper</h2>
 <div class="container">
-  <div class="row sample">
+  <div class="row">
     <div class="col-xs-9 col-xs-offset-2">
       <div class="well well-lg">
         <div class="article-title">
-          <div class="row">
-            <label>Titile</label>
-          <h3><%= @newspaper.title %></h3>
+            <h3> Title:<%= @newspaper.title %></h3>
           </div>
-          
         </div>
-
         <div class="article-text">
-          <h6><%= @newspaper.content %></h6>
+          <h3> Content:<%= @newspaper.content %></h3>
         </div>
-
       </div>
     </div>
   </div>
