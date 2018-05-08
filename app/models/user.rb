@@ -17,4 +17,6 @@ VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates  :password,  :presence   => true,
             :confirmation           => true,
             :length                 => {:within => 6..40}, :on => :create
+
+  has_many :newspapers
 end
