@@ -1,10 +1,14 @@
 @import "bootstrap";
 
-.sign, .log, .edit{
+.sign, .log, .edit, .add, .sample{
   padding-top: 84px;
   padding-bottom: 33px;
   color: green;
 }
 .letter{
   color: green
+}
+.table thead th {
+  border-top: none;
+  border-bottom: none;
 }
