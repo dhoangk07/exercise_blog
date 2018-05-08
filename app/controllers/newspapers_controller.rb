@@ -11,6 +11,7 @@ class NewspapersController < ApplicationController
   def create
     @newspaper = Newspaper.create(newspaper_params)
     if @newspaper.save
+      flash[:success] =  "Newspaper already created successful"
       redirect_to @newspaper
     else
       render "new"
@@ -23,6 +24,7 @@ class NewspapersController < ApplicationController
   def update
     if @newspaper.update(newspaper_params)
       redirect_to newspapers_path
+      flash[:success] =  "Newspaper already updated successful"
     else 
       render "edit"
     end
@@ -34,6 +36,7 @@ class NewspapersController < ApplicationController
   def destroy
     if @newspaper.destroy
       redirect_to newspapers_path
+      flash[:danger] = "Newspaper already destroy successful"
     end
   end
 
