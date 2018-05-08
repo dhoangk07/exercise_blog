@@ -1,4 +1,3 @@
-<h1 align="center" class="create">Create Newspaper</h1>
 <%= form_for(@newspaper, html: {class: "form-horizontal"}) do |f| %>
 <div class="container">
   <div class="row">
@@ -18,7 +17,6 @@
     </div>
   </div>
 </div>
-
 <div class="container"> 
   <div class="form-group">
     <div class="row">
@@ -44,14 +42,15 @@
   <div class='form-group'>
     <div class="row">
       <div class='col-md-9 offset-2'>
-        <%= f.submit class: 'btn btn-success btn-lg btn-block' %>
+        <% if ((params[:controller] === "newspapers") && (params[:action] === "new")) %>
+          <%= f.submit "Create Newspaper", class: 'btn btn-success btn-lg btn-block' %>
+        <% else %>
+          <%= f.submit "Edit Newspaper", class: 'btn btn-success btn-lg btn-block' %>
+        <% end %>
       </div>
     </div>
 </div>
 </div>
-
-
-
 <div class="col-xs-4 col-xs-offset-4" align="center">
   [ <%= link_to "Cancel to request and return to newspapers listing", newspapers_path %> ]
 </div>
