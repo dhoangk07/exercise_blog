@@ -30,7 +30,7 @@
     
   </div>
 
-  <div class="collapse navbar-collapse pull-right " id="navbarSupportedContent">
+  <div class=" float-right " >
     <ul class="navbar-nav ">
       <% if user_signed_in? %>
         <li class="nav-item">
@@ -45,8 +45,10 @@
           </div>
         </li>
       <%else %>
-        <li><%= link_to "Log in", user_session_path, class: "nav-link" %></li>
-        <li><%= link_to "Sign up", new_user_registration_path, class: "nav-link" %></li>
+          <li><%= link_to "Log in", user_session_path, class: "nav-link float-right" %></li>
+          <li><%= link_to "Sign up", new_user_registration_path, class: "nav-link float-right" %></li>
+        </div>
+        
       <% end %>
     </ul>
   </div>
