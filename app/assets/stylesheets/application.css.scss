@@ -12,3 +12,18 @@
   border-top: none;
   border-bottom: none;
 }
+
+.title, .content{
+  padding: 0.375rem 0.75rem;
+  padding-left: 130px;
+}
+
+.create{
+  padding-top: 6px;
+  padding-bottom: 0px;
+  color: green;
+}
+.error_explanation{
+  color: red;
+}
+    
