@@ -1,7 +1,8 @@
 class NewspapersController < ApplicationController
   before_action :set_newspaper ,only: [:edit, :update, :show, :destroy]
+  before_action :authorize, except: [:show, :index]
   def index
-    @newspapers = Newspaper.all
+    @newspapers = Newspaper.all.order('created_at DESC')
   end
 
   def new
@@ -9,7 +10,7 @@ class NewspapersController < ApplicationController
   end
 
   def create
-    @newspaper = Newspaper.create(newspaper_params)
+    @newspaper = current_user.newspapers.create(newspaper_params)
     if @newspaper.save
       flash[:success] =  "Newspaper already created successful"
       redirect_to @newspaper
