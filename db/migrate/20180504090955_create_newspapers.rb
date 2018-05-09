@@ -4,7 +4,7 @@ class CreateNewspapers < ActiveRecord::Migration[5.2]
       t.string :title 
       t.text :content
       t.integer :owner_id 
-      t.integer :role 
+      t.integer :role
 
       t.timestamps
     end
