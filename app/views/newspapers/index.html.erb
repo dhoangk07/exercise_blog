@@ -10,6 +10,7 @@
         <th>No.</th>
         <th>Title</th>
         <th>Content</th>
+        <th>Role</th>
       </tr>
     </thead>
     <tbody>
@@ -18,7 +19,7 @@
         <td><%= index +1 %></td>
         <td><%= newspaper.title %></td>
         <td><%= newspaper.content %> <br/>
-          <small class="badge badge-pill badge-dark">Created_by:<%= newspaper.user.first_name %> <%= newspaper.user.last_name%></small>
+            <small class="badge badge-pill badge-dark">Created_by:<%= newspaper.user.first_name %> <%= newspaper.user.last_name%></small>
           <small class="badge badge-pill badge-dark">Created_at:<%= time_ago_in_words(newspaper.created_at) %> ago</small></br>
           <%= link_to 'Show', newspaper_path(newspaper), class: "btn btn-success btn-sm" %>
           <% if user_signed_in? && current_user == newspaper.user %>
@@ -27,6 +28,7 @@
                                     method: :delete,
                                     data: { confirm: "Are you sure? "}, class: "btn btn-danger btn-sm" %>
           <% end %>
+        </td>
 
       </tr>
       <% end %>

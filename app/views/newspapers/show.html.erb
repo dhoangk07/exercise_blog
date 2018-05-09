@@ -3,14 +3,57 @@
   <div class="row">
     <div class="col-xs-9 col-xs-offset-2">
       <div class="well well-lg">
-        <div class="article-title">
-            <h3> Title:<%= @newspaper.title %></h3>
-          </div>
+        <div class="newspaper-title">
+          <h3> Title:<%= @newspaper.title %></h3>
         </div>
-        <div class="article-text">
-          <h3> Content:<%= @newspaper.content %></h3>
-        </div>
+      </div>
+      <div class="newspaper-text">
+        <h3> Content:<%= @newspaper.content %></h3>
       </div>
     </div>
   </div>
 </div>
+</div>
+
+<h2 class="offset-2">Add a comment:</h2>
+<%= form_with(model: [ @newspaper, @newspaper.comments.build ], local: true) do |form| %>
+  <div class="container">
+    <div class="row">
+      <div>
+        <p>
+          <%= form.hidden_field :user_id, :value => current_user.id %>
+        </p>
+        <p>
+          <%= form.label :commenter %><br>
+          <%= form.text_field :commenter %>
+        </p>
+        <p>
+          <%= form.label :body %><br>
+          <%= form.text_area :body %>
+        </p>
+        <p>
+          <%= form.submit %>
+        </p>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<p>
+  <strong>Commenter:</strong>
+  <%= comment.commenter %>
+</p>
+ 
+<p>
+  <strong>Comment:</strong>
+  <%= comment.body %>
+</p>
+
+<p>
+  <%= link_to 'Destroy Comment', newspaper_comment_path(@newspaper, @newspaper.comments),
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+</p>
+
+<%= link_to 'Edit', edit_newspaper_path(@newspaper) %> |
+<%= link_to 'Back', newspapers_path %>
