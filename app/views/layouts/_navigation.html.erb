@@ -33,12 +33,14 @@
   <div class=" float-right " >
     <ul class="navbar-nav ">
       <% if user_signed_in? %>
+
+
         <li class="nav-item">
           <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Your Profile
+            <%= current_user.last_name %> <%= current_user.first_name %> 
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%= link_to "Edit your profile", edit_user_registration_path(current_user), class: "nav-link" %>
