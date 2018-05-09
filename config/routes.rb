@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :newspapers do
       resources :comments
     end
+    resources :users
   
   # namespace :admin do
   #   resources :users
