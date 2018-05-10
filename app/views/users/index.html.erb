@@ -15,6 +15,7 @@
               <th>First Name</th>
               <th>Last Name</th>
               <th>Email</th>
+              <th>Profile</th>
               <th>Role</th>
             </tr>
           </thead>
@@ -31,6 +32,8 @@
                         method: :delete,
                         data: { confirm: "Are you sure? "} %></small>
                 </td>
+
+                <td><%= gravatar_for user %><br/>
                 
                 <% if user.role == "admin" %>
                   <td><%= link_to "Admin", users_path(filter: "admin") %> </td>
