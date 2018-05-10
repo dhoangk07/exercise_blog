@@ -2,7 +2,11 @@
   <h3 align="center" class="add"> Listing all Newspaper </h3>
 
   <%= link_to "Add New Newspaper", new_newspaper_path %> 
-
+   <div align="center">
+        <div class="digg_pagination" >
+          <%= will_paginate @newspapers, :container => true %>
+        </div>
+      </div>
   <table class="table table-hover">
     <thead>
       <tr>
@@ -33,4 +37,11 @@
       <% end %>
     </tbody>
   </table>
+  <div align="center">
+    <div class="digg_pagination" >
+      <%= will_paginate @newspapers, :container => true %>
+    </div>
+  </div>
 </div>
+
+ 

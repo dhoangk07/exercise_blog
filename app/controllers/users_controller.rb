@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     if params[:filter] == "admin" 
       @users = User.where(role: params[:filter])
     else
-      @users = User.paginate(:page => params[:page], :per_page => 7)
+      @users = User.paginate(:page => params[:page], :per_page => 5)
     end
   end
 

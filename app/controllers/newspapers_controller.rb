@@ -2,7 +2,7 @@ class NewspapersController < ApplicationController
   before_action :set_newspaper ,only: [:edit, :update, :show, :destroy]
   before_action :authorize, except: [:show, :index]
   def index
-    @newspapers = Newspaper.all.order('created_at DESC')
+    @newspapers = Newspaper.all.order('created_at DESC').paginate(:page => params[:page], :per_page => 5)
   end
 
   def new
