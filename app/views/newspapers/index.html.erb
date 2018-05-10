@@ -2,15 +2,15 @@
   <h3 align="center" class="add"> Listing all Newspaper </h3>
 
   <%= link_to "Add New Newspaper", new_newspaper_path %> 
-   <div align="center">
-        <div class="digg_pagination" >
-          <%= will_paginate @newspapers, :container => true %>
-        </div>
-      </div>
+
+  <div class="row offset-3">
+    <p align="center"><%= will_paginate @newspaper, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %></p>
+    
+  </div>
+    
   <table class="table table-hover">
     <thead>
       <tr>
-        <div></div>
         <th>No.</th>
         <th>Title</th>
         <th>Content</th>
@@ -21,7 +21,7 @@
       <tr>
         <td><%= index +1 %></td>
         <td><%= newspaper.title %></td>
-        <td><%= newspaper.content %> <br/>
+        <td class="content"><%= newspaper.content %> <br/>
             <small class="badge badge-pill badge-dark">Created_by:<%= newspaper.user.first_name %> <%= newspaper.user.last_name%></small>
        <small class="badge badge-pill badge-dark">Created_at:<%= time_ago_in_words(newspaper.created_at) %> ago</small></br>
           <%= link_to 'Show', newspaper_path(newspaper), class: "btn btn-success btn-sm" %>
@@ -37,12 +37,7 @@
       <% end %>
     </tbody>
   </table>
-  <div align="center">
-    <div class="digg_pagination" >
-      <%= will_paginate @newspapers, :container => true %>
-    </div>
-  </div>
-</div>
+  
 
 
  

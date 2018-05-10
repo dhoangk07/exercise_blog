@@ -46,7 +46,7 @@ gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
 gem 'will_paginate', '>= 3.1'
 
-gem 'bootstrap-will_paginate', '0.0.10'
+gem 'will_paginate-bootstrap4'
 
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 
