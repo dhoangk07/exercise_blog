@@ -33,11 +33,20 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 
     </form> -->
-
-  <%= form_tag newspapers_path, :class =>"form-control", :method => 'get' do %>
-    <%= text_field_tag :search, params[:search], :class =>"form-control" %>
-          <%= submit_tag "Search", :class => "btn btn-default" %>
+  <% if ((params[:controller] === "newspapers") && (params[:action] === "index")) %>
+    <%= form_tag newspapers_path, :class =>"form-control", :method => 'get' do %>
+      <%= text_field_tag :search, params[:search], :class =>"form-control" %>
+            <%= submit_tag "Search", :class => "btn btn-default" %>
+    <% end %>
+  <% else %>
+    <%= form_tag users_path, :class =>"form-control", :method => 'get' do %>
+      <%= text_field_tag :search, params[:search], :class =>"form-control" %>
+            <%= submit_tag "Search", :class => "btn btn-default" %>
+    <% end %>
   <% end %>
+
+
+
   </div>
 
   <div class=" float-right" >

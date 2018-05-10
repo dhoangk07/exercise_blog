@@ -6,6 +6,10 @@ class UsersController < ApplicationController
     else
       @users = User.paginate(:page => params[:page], :per_page => 5)
     end
+
+    if params[:search].present?
+      @users = @users.search(params[:search])
+    end
   end
 
   def show
@@ -18,7 +22,7 @@ class UsersController < ApplicationController
 
   def destroy
     if @user.destroy
-      redirect_to users_path
+    redirect_to users_path
       flash[:danger] = "#{@user.first_name} #{@user.last_name} has been deleted "
     end
   end

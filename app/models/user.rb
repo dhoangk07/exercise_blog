@@ -23,4 +23,12 @@ VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   # has_attached_file :image, styles: { medium: "300x300#", thumb: "100x100#" }
   # validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+
+  def self.search(search)
+    if search
+       self.where('email LIKE ? OR first_name LIKE ? OR last_name LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
+    else
+      self
+    end
+  end
 end
