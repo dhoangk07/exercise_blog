@@ -21,6 +21,11 @@
           <%= link_to "Show Listing Newspaper", newspapers_path %> 
         </div>
       </li>
+        <% if admin_only  %>
+          <%= link_to "Users", users_path, class: "nav-link"%> 
+          <p > ADMIN</p>
+        <% end %>
+        
       
     </ul>
     <!-- <form class="form-inline my-2 my-lg-0">
@@ -30,7 +35,7 @@
     
   </div>
 
-  <div class=" float-right " >
+  <div class=" float-right" >
     <ul class="navbar-nav ">
       <% if user_signed_in? %>
         <li class="nav-item">
