@@ -3,6 +3,9 @@ class NewspapersController < ApplicationController
   before_action :authorize, except: [:show, :index]
   def index
     @newspapers = Newspaper.all.order('created_at DESC').paginate(:page => params[:page], :per_page => 5)
+    if params[:search].present?
+      @newspapers = @newspapers.search(params[:search])
+    end
   end
 
   def new
@@ -47,6 +50,6 @@ class NewspapersController < ApplicationController
 
   private
   def newspaper_params
-    params.require(:newspaper).permit(:title, :content)
+    params.require(:newspaper).permit(:title, :content, :search)
   end
 end
