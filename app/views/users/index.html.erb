@@ -10,12 +10,15 @@
         <table class="table table-hover">
           <thead>
             <tr>
-              <th>No.1</th>
+              <th>No.</th>
               <th>First Name</th>
               <th>Last Name</th>
               <th>Email</th>
               <th>Profile</th>
               <th>Role</th>
+              <th>Sign In Count</th>
+              <th>Newspapers Count</th>
+              <th>Comments Count</th>
             </tr>
           </thead>
           <tbody>
@@ -25,19 +28,22 @@
                 <td><%= user.first_name %></td>
                 <td><%= user.last_name %></td>
                 <td><%= user.email %><br/>
-                  <small class="badge badge-pill badge-warning"><%= link_to 'Show', user_path(user) %></small>
-                  <small class="badge badge-pill badge-warning"><%= link_to "Edit", edit_user_registration_path(user)%></small>
-                  <small class="badge badge-pill badge-warning"><%= link_to "Destroy", user_path(user),
-                        method: :delete,
-                        data: { confirm: "Are you sure? "} %></small>
+                  
                 </td>
 
                 <td><%= gravatar_for user %><br/>
                 
                 <% if user.role == "admin" %>
                   <td><%= link_to "Admin", users_path(filter: "admin") %> </td>
+                  <td><%= user.sign_in_count %></td>
+                  <td><%= Newspaper.all.where(user_id: user.id).count %></td>
+                  <td><%= Comment.all.where(user_id: user.id).count %></td>
+                  <td><%=render "users/modified" %></td>
                 <% else %>
-                  <td><%= user.role %></td>
+                  <td><%= user.role.capitalize %></td>
+                  <td><%= user.sign_in_count %></td>
+                  <td><%= Comment.all.where(user_id: params[:user_id]).count %></td>
+                  <td><%=render "users/modified", obj: @users %></td>
                 <% end %>
               </tr>
             <% end %>
