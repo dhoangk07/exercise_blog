@@ -1,7 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h1> Listing all Users</h1>
+      <h1 class="sample" align="center"> Listing all Users</h1>
+      <div align="center">
+        <div class="digg_pagination" >
+          <%= will_paginate @users, :container => true %>
+        </div>
+      </div>
+      
         <table class="table table-hover">
           <thead>
             <tr>
@@ -35,6 +41,13 @@
             <% end %>
           </tbody>
         </table>
+      <div align="center">
+        <div class="digg_pagination" >
+          <%= will_paginate @users, :container => true %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
+
