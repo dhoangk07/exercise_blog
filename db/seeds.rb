@@ -29,7 +29,7 @@
 users = User.order(:created_at).take(6)
 50.times do
   title = "New York"
-  content = Faker::Lorem.sentence(5)
+  content = Faker::Lorem.sentence(100)
   users.each { |user| user.newspapers.create!(title: title, content: content) }
 end
 
