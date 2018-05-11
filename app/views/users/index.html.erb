@@ -40,11 +40,11 @@
                   <td><%= Newspaper.all.where(user_id: user.id).count %></td>
                   <td><%= Comment.all.where(user_id: user.id).count %></td>
                   </td>
-                    <td><%= link_to 'Show', user_path(user), class: "badge badge-pill badge-warning badge-user" %><br/>
-                    <%= link_to "Edit", edit_user_registration_path(user), class: "badge badge-pill badge-warning badge-user"%><br/>
+                    <td><%= link_to 'Show', user_path(user), class: "badge badge-pill badge-success badge-user" %><br/>
+                    <%= link_to "Edit", edit_user_registration_path(user), class: "badge badge-pill badge-success badge-user"%><br/>
                     <%= link_to "Destroy", user_path(user),
                       method: :delete,
-                      data: { confirm: "Are you sure? "}, class: "badge badge-pill badge-warning badge-user" %>
+                      data: { confirm: "Are you sure? "}, class: "badge badge-pill badge-success badge-user" %>
                   </td>  
                 <% else %>
                   <td><%= user.role.capitalize %></td>
@@ -55,11 +55,11 @@
                     <%= "0" %>
                     <% end %>
                   </td>
-                    <td><%= link_to 'Show', user_path(user), class: "badge badge-pill badge-warning badge-user" %><br/>
-                    <%= link_to "Edit", edit_user_registration_path(user), class: "badge badge-pill badge-warning badge-user"%><br/>
+                    <td><%= link_to 'Show', user_path(user), class: "badge badge-pill badge-success badge-user" %><br/>
+                    <%= link_to "Edit", edit_user_registration_path(user), class: "badge badge-pill badge-success badge-user"%><br/>
                     <%= link_to "Destroy", user_path(user),
                       method: :delete,
-                      data: { confirm: "Are you sure? "}, class: "badge badge-pill badge-warning badge-user" %>
+                      data: { confirm: "Are you sure? "}, class: "badge badge-pill badge-success badge-user" %>
                   </td>  
                 <% end %>
               </tr>
