@@ -7,25 +7,19 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link letter" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link letter" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle letter" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Newspaper
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <%= link_to "Create Newspaper", newspapers_path %> 
-          <%= link_to "Show Listing Newspaper", newspapers_path %> 
-        </div>
-      </li>
-        <% if admin_only  %>
-          <%= link_to "Users", users_path, class: "nav-link"%> 
-          <p > ADMIN</p>
-        <% end %>
         
+        <%= link_to "Home", root_path, class: "nav-link badge badge-pill badge-success badge-login" %> 
+      </li>
+
+      <li class="nav-item ">
+        <%= link_to "Create Newspaper", newspapers_path, class: "nav-link badge badge-pill badge-success badge-login" %> 
+      </li>
+
+      <li class="nav-item ">
+        <%= link_to "List Newspaper", newspapers_path, class: "nav-link badge badge-pill badge-success badge-login" %> 
+      </li>
+
+      </li>
       
     </ul>
     <!-- <form class="form-inline my-2 my-lg-0">
@@ -48,15 +42,21 @@
 
   <div class=" float-right" >
     <ul class="navbar-nav ">
+      <% if admin_only  %>
+        <%= link_to "Admin", users_path(filter: "admin"), class: "nav-link badge badge-pill badge-success badge-login"%> 
+        <%= link_to "Users", users_path, class: "nav-link badge badge-pill badge-success badge-login"%> 
+
+        <% end %>
+
       <% if user_signed_in? %>
         <li class="nav-item">
           <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "badge badge-pill badge-success badge-login" %> 
         </li>
         <li class="nav-item">
-          <%= link_to current_user.first_name, "#", class: "badge badge-pill badge-success badge-login" %> 
+          <%= link_to current_user.first_name + current_user.last_name, "#", class: "badge badge-pill badge-success badge-login" %> 
         </li>
       <%else %>
-          <li><%= link_to "Log in", user_session_path, class: "nav-link badge badge-pill badge-warning badge-login" %></li>
+          <li><%= link_to "Log in", user_session_path, class: "nav-link badge badge-pill badge-success badge-login" %></li>
           <li><%= link_to "Sign up", new_user_registration_path, class: "nav-link badge badge-pill badge-success badge-login" %></li>
         </div>
         
