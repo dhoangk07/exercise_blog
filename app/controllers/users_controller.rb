@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :destroy]
   def index
     if params[:filter] == "admin" 
-      @users = User.where(role: params[:filter])
+      @users = User.where(role: params[:filter]).paginate(:page => params[:page], :per_page => 5)
     else
       @users = User.paginate(:page => params[:page], :per_page => 5)
     end
