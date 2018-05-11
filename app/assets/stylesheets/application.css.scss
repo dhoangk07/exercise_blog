@@ -79,16 +79,37 @@ text-align: center;
   text-align: center;
   vertical-align: middle;
   color: green;
-  border: 0.125rem solid green;
+  border: 1px solid green;
   font-size: 16px;
   background: #f8f9fa;
-  padding-top: 3px;
+  padding-top: 5px;
+  font-size: 75%;
+  font-weight: 500;
 }
 
 .badge-small{
-  width: 50px;
+  width: 56px;
+  height: 15px;
+  border: 1px solid green;
+  background: #f8f9fa;
+  color: green;
+  font-size: 11px;
+  padding-top: 5px;
+  font-size: 75%;
+  font-weight: 500;
 }
 
 .title-newspaper{
   width: 130px
+}
+
+.badge-created{
+  width: 200px;
+  height: 15px;
+  padding-top: 7px;
+  color: green;
+  background: #F1F1F1;
+  border: 1px solid green;
+  font-size: 75%;
+  font-weight: 500;
 }
