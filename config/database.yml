@@ -1,26 +1,26 @@
 development:
   adapter: postgresql
-  encoding: unicode
-  database: development
+  encoding: utf8
+  database: project_development
   pool: 5
   username: 
   password:
-  timeout: 5000
 
-  test:
+test: &TEST
   adapter: postgresql
-  encoding: unicode
-  database: test
+  encoding: utf8
+  database: project_test
   pool: 5
   username: 
   password:
-  timeout: 5000
 
-  production:
+production:
   adapter: postgresql
-  encoding: unicode
-  database: production
+  encoding: utf8
+  database: project_production
   pool: 5
   username: 
   password:
-  timeout: 5000
+
+cucumber:
+  <<: *TEST

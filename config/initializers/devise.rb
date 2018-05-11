@@ -281,4 +281,6 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
   config.scoped_views = true
+
+  config.secret_key = '8624ea125099653dc6ba57fa68356925798cb4371baf1b3105b53f7171722451a0a411a7d1be2acb6aaeeeb22ac15811db933637e4e435697e7846c84afa0cff'
 end
