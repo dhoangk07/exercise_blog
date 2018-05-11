@@ -38,20 +38,22 @@
 # end
 
 # Microposts
-users = User.order(:created_at).take(6)
-50.times do
-  title = "New York"
-  content = Faker::Lorem.sentence(100)
-  users.each { |user| user.newspapers.create!(title: title, content: content) }
-end
+# users = User.order(:created_at).take(6)
+# 50.times do
+#   title = "New York"
+#   content = Faker::Lorem.sentence(100)
+#   users.each { |user| user.newspapers.create!(title: title, content: content) }
+# end
 
 #Comments
 
-# newspapers = Newspaper.take(50)
-# 10.times do
-#   commenter = "Hanoi"
-#   body = Faker::Lorem.sentence(100)
-#   newspapers.each { |newspaper| newspaper.comments.create!(commenter: commenter, body: body, user_id: "56")}
+newspapers = Newspaper.take(50)
+10.times do
+  commenter = "Hanoi"
+  body = Faker::Lorem.sentence(100)
+  newspapers.each { |newspaper| newspaper.comments.create!(commenter: commenter, body: body, user_id: "1")}
+end
+
  
 # end
 # # Following relationships
