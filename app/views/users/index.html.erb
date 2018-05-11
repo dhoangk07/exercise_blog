@@ -38,6 +38,8 @@
                   <td><%= user.sign_in_count %></td>
                   <td><%= Newspaper.all.where(user_id: user.id).count %></td>
                   <td><%= Comment.all.where(user_id: user.id).count %></td>
+                  <td><%= newspaper_count(user) %></td>
+                  <td><%= comment_count(user)%></td>
                   </td>
                     <td><%= link_to 'Show', user_path(user), class: "badge badge-pill badge-success badge-user" %><br/>
                     <%= link_to "Edit", edit_user_registration_path(user), class: "badge badge-pill badge-success badge-user"%><br/>
@@ -51,6 +53,8 @@
                   <td><%= Comment.all.where(user_id: params[:user_id]).count %></td>
 
                   <td><% if Comment.all.where(user_id: params[:user_id]).count == 0 %>
+                  <td><%= comment_count(user) %></td>
+                  <td><% if comment_count(user) == 0 %>
                     <%= "0" %>
                     <% end %>
                   </td>
