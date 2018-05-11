@@ -2,12 +2,14 @@ class NewspapersController < ApplicationController
   before_action :set_newspaper ,only: [:edit, :update, :show, :destroy]
   before_action :authorize, except: [:show, :index]
   def index
-    @articles = if params[:tag]
-      Article.tagged_with(params[:tag])
-    elsif params[:search].present?
-      @newspapers = @newspapers.search(params[:search])
+    @newspapers = if params[:tag]
+    @newspapers = Newspaper.tagged_with(params[:tag])
     else
       @newspapers = Newspaper.all.order('created_at DESC').paginate(:page => params[:page], :per_page => 5)
+    end
+    
+    if params[:search].present?
+      @newspapers = @newspapers.search(params[:search])
     end
   end
 

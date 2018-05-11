@@ -8,7 +8,7 @@ class Newspaper < ApplicationRecord
   has_many :tags, through: :taggings
 
   def self.tagged_with(name)
-    Tag.find_by!(name: name).articles
+    Tag.find_by!(name: name).newspapers
   end
 
   def self.tag_counts

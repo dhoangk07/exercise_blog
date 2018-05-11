@@ -12,19 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2018_05_11_025630) do
 
-  create_table "categories", force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "category_attachments", force: :cascade do |t|
-    t.integer "category_id"
-    t.string "attachment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "comments", force: :cascade do |t|
     t.string "commenter"
     t.text "body"
@@ -77,7 +64,6 @@ ActiveRecord::Schema.define(version: 2018_05_11_025630) do
     t.string "first_name"
     t.string "last_name"
     t.string "role", default: "user"
-    t.json "avatars"
     t.string "image_file_name"
     t.string "image_content_type"
     t.integer "image_file_size"
