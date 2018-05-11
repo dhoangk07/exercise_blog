@@ -38,6 +38,9 @@
     </tbody>
   </table>
   
+  <p>
+    <%= raw newspaper.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %>
+  </p>
 
 
  

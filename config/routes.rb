@@ -8,10 +8,7 @@ Rails.application.routes.draw do
 
     resources :users
   
-  # namespace :admin do
-  #   resources :users
-  #   resources :newspapers
-  # end
+    get 'tags/:tag', to: 'newspapers#index', as: :tag
 
   root to: "welcome#index"
   end

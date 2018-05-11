@@ -1,57 +1,70 @@
 <%= form_for(@newspaper, html: {class: "form-horizontal"}) do |f| %>
-<div class="container">
-  <div class="row">
-    <div class="col-md-9 offset-2">
-      <div class="form-group">
-        <% if @newspaper.errors.any? %>
-          <div class="error_explanation">
-            <h2 ><%= pluralize(@newspaper.errors.count, "error") %> prohibited this newspaper from being saved:</h2>
-            <ul>
-              <% @newspaper.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 offset-2">
+        <div class="form-group">
+          <% if @newspaper.errors.any? %>
+            <div class="error_explanation">
+              <h2 ><%= pluralize(@newspaper.errors.count, "error") %> prohibited this newspaper from being saved:</h2>
+              <ul>
+                <% @newspaper.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<div class="container"> 
-  <div class="form-group">
-    <div class="row">
-      <div class=' col-md-2 title'>
-        <%= f.label :title %>
+
+    <div class="form-group">
+      <div class="row">
+        <div class=' col-md-2 title'>
+          <%= f.label :title %>
+        </div>
+        <div class='col-md-9'>
+          <%= f.text_field :title, class:'form-control', placeholder: "Title of newspaper", autofocus: true %>
+        </div>
       </div>
-      <div class='col-md-9'>
-        <%= f.text_field :title, class:'form-control', placeholder: "Title of newspaper", autofocus: true %>
+    </div>
+
+    <div class='form-group'>
+      <div class="row">
+        <div class='col-md-2 content'>
+          <%= f.label :content %>
+        </div>
+        <div class='col-md-9'>
+          <%= f.text_area :content, rows: 15, class:'form-control', placeholder: "Body of newspaper", autofocus: true %>
+        </div>
       </div>
+    </div>
+
+    <div class='form-group'>
+      <div class="row">
+        <div class='col-md-9 offset-2'>
+          <% if ((params[:controller] === "newspapers") && (params[:action] === "new")) %>
+            <%= f.submit "Create Newspaper", class: 'btn btn-success btn-lg btn-block' %>
+          <% else %>
+            <%= f.submit "Edit Newspaper", class: 'btn btn-success btn-lg btn-block' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-4 col-xs-offset-4" align="center">
+      [ <%= link_to "Cancel to request and return to newspapers listing", newspapers_path %> ]
     </div>
   </div>
 
-  <div class='form-group'>
-    <div class="row">
-      <div class='col-md-2 content'>
-        <%= f.label :content %>
-      </div>
-      <div class='col-md-9'>
-        <%= f.text_area :content, rows: 15, class:'form-control', placeholder: "Body of newspaper", autofocus: true %>
-      </div>
-    </div>
+  <div class="field">
+    <%= f.label :tag_list, "Tags (separated by commas)" %><br />
+    <%= f.text_field :tag_list %>
   </div>
-  <div class='form-group'>
-    <div class="row">
-      <div class='col-md-9 offset-2'>
-        <% if ((params[:controller] === "newspapers") && (params[:action] === "new")) %>
-          <%= f.submit "Create Newspaper", class: 'btn btn-success btn-lg btn-block' %>
-        <% else %>
-          <%= f.submit "Edit Newspaper", class: 'btn btn-success btn-lg btn-block' %>
-        <% end %>
-      </div>
-    </div>
-</div>
-</div>
-<div class="col-xs-4 col-xs-offset-4" align="center">
-  [ <%= link_to "Cancel to request and return to newspapers listing", newspapers_path %> ]
-</div>
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
 <% end %>
