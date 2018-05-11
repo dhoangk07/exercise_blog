@@ -1,0 +1,7 @@
+<small class="badge badge-pill badge-warning"><%= link_to "Show", obj_path(obj) %>
+</small>
+<small class="badge badge-pill badge-warning"><%= link_to "Edit", edit_obj_registration_path(@obj)%>
+</small>
+<small class="badge badge-pill badge-warning"><%= link_to "Destroy", obj_path(@obj), method: :delete,
+                     data: { confirm: "Are you sure? "} %>
+</small>
