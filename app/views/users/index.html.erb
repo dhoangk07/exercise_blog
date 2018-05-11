@@ -11,14 +11,15 @@
           <thead>
             <tr>
               <th>No.</th>
-              <th>First Name</th>
-              <th>Last Name</th>
+              <th>F.Name</th>
+              <th>L.Name</th>
               <th>Email</th>
               <th>Profile</th>
               <th>Role</th>
               <th>Sign In Count</th>
               <th>Newspapers Count</th>
               <th>Comments Count</th>
+              <th>Edit Profile</th>
             </tr>
           </thead>
           <tbody>
@@ -38,12 +39,28 @@
                   <td><%= user.sign_in_count %></td>
                   <td><%= Newspaper.all.where(user_id: user.id).count %></td>
                   <td><%= Comment.all.where(user_id: user.id).count %></td>
-                  <td><%=render "users/modified" %></td>
+                  </td>
+                    <td><%= link_to 'Show', user_path(user), class: "badge badge-pill badge-warning badge-user" %><br/>
+                    <%= link_to "Edit", edit_user_registration_path(user), class: "badge badge-pill badge-warning badge-user"%><br/>
+                    <%= link_to "Destroy", user_path(user),
+                      method: :delete,
+                      data: { confirm: "Are you sure? "}, class: "badge badge-pill badge-warning badge-user" %>
+                  </td>  
                 <% else %>
                   <td><%= user.role.capitalize %></td>
                   <td><%= user.sign_in_count %></td>
                   <td><%= Comment.all.where(user_id: params[:user_id]).count %></td>
-                  <td><%=render "users/modified", obj: @users %></td>
+
+                  <td><% if Comment.all.where(user_id: params[:user_id]).count == 0 %>
+                    <%= "0" %>
+                    <% end %>
+                  </td>
+                    <td><%= link_to 'Show', user_path(user), class: "badge badge-pill badge-warning badge-user" %><br/>
+                    <%= link_to "Edit", edit_user_registration_path(user), class: "badge badge-pill badge-warning badge-user"%><br/>
+                    <%= link_to "Destroy", user_path(user),
+                      method: :delete,
+                      data: { confirm: "Are you sure? "}, class: "badge badge-pill badge-warning badge-user" %>
+                  </td>  
                 <% end %>
               </tr>
             <% end %>

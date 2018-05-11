@@ -22,14 +22,14 @@
         <td><%= index +1 %></td>
         <td><%= newspaper.title %></td>
         <td class="content"><%= newspaper.content %> <br/>
-            <small class="badge badge-pill badge-dark">Created_by:<%= newspaper.user.first_name %> <%= newspaper.user.last_name%></small>
-       <small class="badge badge-pill badge-dark">Created_at:<%= time_ago_in_words(newspaper.created_at) %> ago</small></br>
-          <%= link_to 'Show', newspaper_path(newspaper), class: "btn btn-success btn-sm" %>
+            <small class="badge badge-pill badge-secondary">Created_by:<%= newspaper.user.first_name %> <%= newspaper.user.last_name%></small>
+       <small class="badge badge-pill badge-secondary">Created_at:<%= time_ago_in_words(newspaper.created_at) %> ago</small></br>
+          <%= link_to 'Show', newspaper_path(newspaper), class: "badge badge-success" %>
           <% if user_signed_in? && current_user == newspaper.user %>
-            <%= link_to "Edit", edit_newspaper_path(newspaper), class: "btn btn-primary btn-sm"%>
+            <%= link_to "Edit", edit_newspaper_path(newspaper), class: "badge badge-primary"%>
             <%= link_to "Destroy",  newspaper_path(newspaper),
                                     method: :delete,
-                                    data: { confirm: "Are you sure? "}, class: "btn btn-danger btn-sm" %>
+                                    data: { confirm: "Are you sure? "}, class: "badge badge-danger" %>
           <% end %>
         </td>
 
