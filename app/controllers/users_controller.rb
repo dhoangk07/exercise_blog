@@ -20,6 +20,13 @@ class UsersController < ApplicationController
 
   def edit
 
+  def update
+    if @user.update(user_params)
+      redirect_to users_path
+      flash[:success] = "#{@user.first_name} #{@user.last_name} has been uploaded successfully "
+    else 
+      render "edit"   
+    end
   end
 
   def destroy
