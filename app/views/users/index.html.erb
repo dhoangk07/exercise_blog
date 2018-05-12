@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
       <h1 class="sample" align="center"> Listing all Users</h1>
@@ -28,7 +28,6 @@
                 <td> <%= image_tag user.image.url(:thumb), class: "rounded-circle" %> <br/>
                 <% if user.role == "admin" %>
                   <td><%= link_to "Admin", users_path(filter: "admin") %> </td>
-                  <td><%= link_to "Admin", users_path(filter: "admin") %> </td>
                   <td><%= user.sign_in_count %></td>
                   <td><%= newspaper_count(user) %></td>
                   <td><%= comment_count(user)%></td>
@@ -52,8 +51,11 @@
     </div>
   </div>
 </div>
-
-<div class="row offset-3">
-  <p align="center"><%= will_paginate @user, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %></p>
+<div class="container">
+  <div class="row" align="center">
+    <p align="center"><%= will_paginate @user, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+    </p>
+  </div>
 </div>
+
 
