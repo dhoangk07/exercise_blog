@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :destroy]
   before_action :set_user, only: [:show, :destroy, :update]
   def index
     if params[:filter] == "admin" 
       @users = User.where(role: params[:filter]).paginate(:page => params[:page], :per_page => 5)
+
     elsif params[:filter] == "user" 
       @users = User.where(role: params[:filter]).paginate(:page => params[:page], :per_page => 5)
     else
@@ -18,8 +18,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
-
-  def edit
 
   def update
     if @user.update(user_params)
@@ -39,5 +37,10 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :image)
   end
 end

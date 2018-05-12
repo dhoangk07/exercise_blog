@@ -25,8 +25,9 @@
                 <td><%= user.last_name %></td>
                 <td><%= user.email %><br/>
                 </td>
-                <td><%= gravatar_for user %><br/>
+                <td> <%= image_tag user.image.url(:thumb), class: "rounded-circle" %> <br/>
                 <% if user.role == "admin" %>
+                  <td><%= link_to "Admin", users_path(filter: "admin") %> </td>
                   <td><%= link_to "Admin", users_path(filter: "admin") %> </td>
                   <td><%= user.sign_in_count %></td>
                   <td><%= newspaper_count(user) %></td>
