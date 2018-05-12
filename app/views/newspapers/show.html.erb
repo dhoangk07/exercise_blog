@@ -15,7 +15,7 @@
       <%= form_with(model: [ @newspaper, @newspaper.comments.build ], local: true) do |form| %>
         <div class="row">
           <div>
-            <p>
+          <p>
               <%= form.hidden_field :user_id, :value => current_user.id %>
             </p>
             <p>

@@ -1,63 +1,29 @@
-<nav class="navbar navbar-expand-lg navbar-default bg-light fixed-top">
-  <a class="navbar-brand letter" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <%= link_to "Home", root_path, class: "nav-link badge badge-pill badge-success badge-login" %> 
-      </li>
-
-      <li class="nav-item ">
-        <%= link_to "Create Newspaper", newspapers_path, class: "nav-link badge badge-pill badge-success badge-login" %> 
-      </li>
-
-      <li class="nav-item ">
-        <%= link_to "List Newspaper", newspapers_path, class: "nav-link badge badge-pill badge-success badge-login" %> 
-      </li>
-    </ul>
-    
-
-    <form class="form-inline my-2 my-lg-0">
-      <% if ((params[:controller] === "newspapers") && (params[:action] === "index")) %>
-        <%= form_tag newspapers_path, :class =>"form-control search-bar", :method => 'get' do %>
-          <%= text_field_tag :search, params[:search], :class =>"form-control" %>
-                <%= submit_tag "Search", :class => "btn btn-outline-success my-2 my-sm-0" %>
-                <i class="fa fa-search"></i>
-        <% end %>
-      <% else %>
-        <%= form_tag users_path, :class =>"form-control", :method => 'get' do %>
-          <%= text_field_tag :search, params[:search], :class =>"form-control search-bar" %>
-                <%= submit_tag "Search", :class => "btn btn-outline-success my-2 my-sm-0" %>
-        <% end %>
-      <% end %>
-    </form>
-  </div>
-
-  <div class=" float-right" >
-    <ul class="navbar-nav ">
-      <% if admin_only  %>
-        <%= link_to "Admin", users_path(filter: "admin"), class: "nav-link badge badge-pill badge-success badge-login"%> 
-        <%= link_to "Users", users_path(filter: "user"), class: "nav-link badge badge-pill badge-success badge-login"%> 
-
-      <% end %>
-
-      <% if user_signed_in? %>
-       
-        <li class="nav-item">
-          <%= link_to current_user.first_name + current_user.last_name, "#", class: "badge badge-pill badge-success badge-login" %> 
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">Start Bootstrap</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <%= link_to "Newspapers", newspapers_path, class: "nav-link"  %> 
         </li>
-         <li class="nav-item">
-          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "badge badge-pill badge-success badge-login" %> 
-        </li>
-      <%else %>
-          <li><%= link_to "Sign In", user_session_path, class: "nav-link badge badge-pill badge-success badge-login" %></li>
-          <li><%= link_to "Sign Up", new_user_registration_path, class: "nav-link badge badge-pill badge-success badge-login" %></li>
-        </div>
-        
-      <% end %>
-    </ul>
+
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to current_user.first_name.capitalize + current_user.last_name.capitalize, "#", class: "nav-link" %> 
+          </li>
+           <li class="nav-item">
+            <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "nav-link" %> 
+          </li>
+        <%else %>
+            <li><%= link_to "Sign In", user_session_path, class: "nav-link" %></li>
+            <li><%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %></li>
+          </div>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </nav>

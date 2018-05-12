@@ -5,7 +5,7 @@ class NewspapersController < ApplicationController
     @newspapers = if params[:tag]
     @newspapers = Newspaper.tagged_with(params[:tag])
     else
-      @newspapers = Newspaper.all.order('created_at DESC').paginate(:page => params[:page], :per_page => 5)
+      @newspapers = Newspaper.all.order('created_at DESC').paginate(:page => params[:page], :per_page => 3)
     end
     
     if params[:search].present?

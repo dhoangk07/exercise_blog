@@ -1,46 +1,134 @@
-<div class="container">
-  <h3 align="center" class="add"> Listing all Newspaper </h3>
+<div class="row">
 
-  <%= link_to "Add New Newspaper", new_newspaper_path %> 
+  <!-- Blog Entries Column -->
+  <div class="col-md-8">
 
-  
-    
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>No.</th>
-        <th class="title-newspaper">Title</th>
-        <th>Content</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @newspapers.each_with_index do |newspaper,index| %>
-      <tr>
-        <td><%= index +1 %></td>
-        <td><%= newspaper.title %></td>
-        <td class="content"><%= newspaper.content %> <br/>
-            <small class="badge badge-pill badge-secondary badge-created">Created_by:<%= newspaper.user.first_name %> <%= newspaper.user.last_name%></small>
-       <small class="badge badge-pill badge-secondary badge-created">Created_at:<%= time_ago_in_words(newspaper.created_at) %> ago</small></br>
-          <%= link_to 'Show', newspaper_path(newspaper), class: "badge badge-pill badge-success badge-small" %>
-          <% if user_signed_in? && current_user == newspaper.user %>
-          <%= link_to "Edit", edit_newspaper_path(newspaper), class: "badge badge-pill badge-primary badge-small"%>
-          <%= link_to "Destroy",  newspaper_path(newspaper),
-                                    method: :delete,
-                                    data: { confirm: "Are you sure? "}, class: "badge badge-pill badge-danger badge-small" %>
-          <%= raw newspaper.tags.map(&:name).map { |t| link_to t, tag_path(t), class: "badge badge-pill badge-warning badge-small" }.join(', ') %>
-          <% end %>
+    <h1 class="my-4">Page Heading
+      <small>Secondary Text</small>
+    </h1>
 
-        </td>
-        
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-  
-<div class="mx-auto" style="width: 200px;">
-  <p align="center"><%= will_paginate @newspaper, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %></p>
+    <% @newspapers.each do |newspaper| %>
+    <!-- Blog Post -->
+      <div class="card mb-4">
+        <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+        <div class="card-body">
+          
+          <h2 class="card-title"><%= newspaper.title %></h2>
+          <p class="card-text"><%= newspaper.content %></p>
+
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            Read More 
+          </button>
+
+          <!-- Modal -->
+
+          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+
+                  <nav arialabel="breadcrumb">
+                    <span for="exampleInputEmail1">Title</span>
+                    <ol class="breadcrumb">
+                      <li class="breadcrumbitem active" ariacurrent="page"><h3 class="role"> <%= newspaper.title %></h3></li>
+                    </ol>
+                  </nav>
+
+                  <nav arialabel="breadcrumb">
+                    <span for="exampleInputEmail1">Content</span>
+                    <ol class="breadcrumb">
+                      <li class="breadcrumbitem active" ariacurrent="page"><h3 class="role"> <%= newspaper.content%></h3></li>
+                    </ol>
+                  </nav>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="card-footer text-muted">
+          Posted on January 1, 2017 by
+          <a href="#">Start Bootstrap</a>
+        </div>
+      </div>
+
+    <% end %>
+
+    <!-- Pagination -->
+    <div class="row" >
+      <p align="center"><%= will_paginate @newspaper, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Sidebar Widgets Column -->
+  <div class="col-md-4">
+
+    <!-- Search Widget -->
+    <div class="card my-4">
+      <h5 class="card-header">Search</h5>
+      <div class="card-body">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for...">
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button">Go!</button>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Categories Widget -->
+    <div class="card my-4">
+      <h5 class="card-header">Categories</h5>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-6">
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="#">Web Design</a>
+              </li>
+              <li>
+                <a href="#">HTML</a>
+              </li>
+              <li>
+                <a href="#">Freebies</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-6">
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="#">JavaScript</a>
+              </li>
+              <li>
+                <a href="#">CSS</a>
+              </li>
+              <li>
+                <a href="#">Tutorials</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Side Widget -->
+    <div class="card my-4">
+      <h5 class="card-header">Side Widget</h5>
+      <div class="card-body">
+        You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+      </div>
+    </div>
+
+  </div>
+
 </div>
-
-  
-
- 
