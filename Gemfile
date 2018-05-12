@@ -48,7 +48,7 @@ gem 'will_paginate', '>= 3.1'
 
 gem 'will_paginate-bootstrap4'
 
-# gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem "paperclip"
 
 gem 'font-awesome-sass', '~> 5.0.9'
 
