@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   def index
     if params[:filter] == "admin" 
       @users = User.where(role: params[:filter]).paginate(:page => params[:page], :per_page => 5)
+    elsif params[:filter] == "user" 
+      @users = User.where(role: params[:filter]).paginate(:page => params[:page], :per_page => 5)
     else
       @users = User.paginate(:page => params[:page], :per_page => 5)
     end
