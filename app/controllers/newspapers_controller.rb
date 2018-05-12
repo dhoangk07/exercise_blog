@@ -2,7 +2,12 @@ class NewspapersController < ApplicationController
   before_action :set_newspaper ,only: [:edit, :update, :show, :destroy]
   before_action :authorize, except: [:show, :index]
   def index
-    @newspapers = Newspaper.all.order('created_at DESC').paginate(:page => params[:page], :per_page => 5)
+    @newspapers = if params[:tag]
+    @newspapers = Newspaper.tagged_with(params[:tag])
+    else
+      @newspapers = Newspaper.all.order('created_at DESC').paginate(:page => params[:page], :per_page => 5)
+    end
+    
     if params[:search].present?
       @newspapers = @newspapers.search(params[:search])
     end
@@ -50,6 +55,6 @@ class NewspapersController < ApplicationController
 
   private
   def newspaper_params
-    params.require(:newspaper).permit(:title, :content, :search)
+    params.require(:newspaper).permit(:title, :content, :search, :tag_list)
   end
 end

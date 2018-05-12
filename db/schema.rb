@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_10_084254) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 2018_05_11_025630) do
 
   create_table "comments", force: :cascade do |t|
     t.string "commenter"
@@ -36,6 +33,21 @@ ActiveRecord::Schema.define(version: 2018_05_10_084254) do
     t.string "user_id"
   end
 
+  create_table "taggings", force: :cascade do |t|
+    t.integer "tag_id"
+    t.integer "newspaper_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["newspaper_id"], name: "index_taggings_on_newspaper_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -52,6 +64,10 @@ ActiveRecord::Schema.define(version: 2018_05_10_084254) do
     t.string "first_name"
     t.string "last_name"
     t.string "role", default: "user"
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

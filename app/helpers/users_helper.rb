@@ -10,4 +10,12 @@ module UsersHelper
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
     image_tag(gravatar_url, alt: user.last_name, class: "gravatar")
   end
+
+  def comment_count(user)
+    Comment.all.where(user_id: user.id).count
+  end
+
+  def newspaper_count(user)
+    Newspaper.all.where(user_id: user.id).count
+  end
 end

@@ -6,7 +6,7 @@
         <div class="form-group">
           <% if @user.errors.any? %>
             <div class="error_explanation">
-              <h2 ><%= pluralize(@user.errors.count, "error") %> prohibited this newspaper from being saved:</h2>
+              <h2 ><%= pluralize(@user.errors.count, "error") %> prohibited this User from being saved:</h2>
               <ul>
                 <% @user.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
@@ -55,10 +55,9 @@
        <%= f.password_field :password_confirmation, class:'form-control', autocomplete: "off", placeholder: "Enter password_confirmation" %>
       </div>
     </div>
-
     <div class='form-group'>
       <div class=' col-md-12'>
-        <%= f.submit "Log in", class: 'btn btn-success btn-lg btn-block' %>
+        <%= f.submit "Sign Up", class: 'btn btn-success btn-lg btn-block' %>
       </div>
     </div>
 <% end %>

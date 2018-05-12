@@ -3,16 +3,13 @@
 
   <%= link_to "Add New Newspaper", new_newspaper_path %> 
 
-  <div class="row offset-3">
-    <p align="center"><%= will_paginate @newspaper, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %></p>
-    
-  </div>
+  
     
   <table class="table table-hover">
     <thead>
       <tr>
         <th>No.</th>
-        <th>Title</th>
+        <th class="title-newspaper">Title</th>
         <th>Content</th>
       </tr>
     </thead>
@@ -22,22 +19,28 @@
         <td><%= index +1 %></td>
         <td><%= newspaper.title %></td>
         <td class="content"><%= newspaper.content %> <br/>
-            <small class="badge badge-pill badge-secondary">Created_by:<%= newspaper.user.first_name %> <%= newspaper.user.last_name%></small>
-       <small class="badge badge-pill badge-secondary">Created_at:<%= time_ago_in_words(newspaper.created_at) %> ago</small></br>
-          <%= link_to 'Show', newspaper_path(newspaper), class: "badge badge-success" %>
+            <small class="badge badge-pill badge-secondary badge-created">Created_by:<%= newspaper.user.first_name %> <%= newspaper.user.last_name%></small>
+       <small class="badge badge-pill badge-secondary badge-created">Created_at:<%= time_ago_in_words(newspaper.created_at) %> ago</small></br>
+          <%= link_to 'Show', newspaper_path(newspaper), class: "badge badge-pill badge-success badge-small" %>
           <% if user_signed_in? && current_user == newspaper.user %>
-            <%= link_to "Edit", edit_newspaper_path(newspaper), class: "badge badge-primary"%>
-            <%= link_to "Destroy",  newspaper_path(newspaper),
+          <%= link_to "Edit", edit_newspaper_path(newspaper), class: "badge badge-pill badge-primary badge-small"%>
+          <%= link_to "Destroy",  newspaper_path(newspaper),
                                     method: :delete,
-                                    data: { confirm: "Are you sure? "}, class: "badge badge-danger" %>
+                                    data: { confirm: "Are you sure? "}, class: "badge badge-pill badge-danger badge-small" %>
+          <%= raw newspaper.tags.map(&:name).map { |t| link_to t, tag_path(t), class: "badge badge-pill badge-warning badge-small" }.join(', ') %>
           <% end %>
-        </td>
 
+        </td>
+        
       </tr>
       <% end %>
     </tbody>
   </table>
   
+<div class="mx-auto" style="width: 200px;">
+  <p align="center"><%= will_paginate @newspaper, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %></p>
+</div>
 
+  
 
  

@@ -7,65 +7,54 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link letter" href="#">Home <span class="sr-only">(current)</span></a>
+        <%= link_to "Home", root_path, class: "nav-link badge badge-pill badge-success badge-login" %> 
       </li>
-      <li class="nav-item">
-        <a class="nav-link letter" href="#">Link</a>
+
+      <li class="nav-item ">
+        <%= link_to "Create Newspaper", newspapers_path, class: "nav-link badge badge-pill badge-success badge-login" %> 
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle letter" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Newspaper
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <%= link_to "Create Newspaper", newspapers_path %> 
-          <%= link_to "Show Listing Newspaper", newspapers_path %> 
-        </div>
+
+      <li class="nav-item ">
+        <%= link_to "List Newspaper", newspapers_path, class: "nav-link badge badge-pill badge-success badge-login" %> 
       </li>
-        <% if admin_only  %>
-          <%= link_to "Users", users_path, class: "nav-link"%> 
-          <p > ADMIN</p>
-        <% end %>
-        
-      
     </ul>
-    <!-- <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    
 
-    </form> -->
-  <% if ((params[:controller] === "newspapers") && (params[:action] === "index")) %>
-    <%= form_tag newspapers_path, :class =>"form-control", :method => 'get' do %>
-      <%= text_field_tag :search, params[:search], :class =>"form-control" %>
-            <%= submit_tag "Search", :class => "btn btn-default" %>
-    <% end %>
-  <% else %>
-    <%= form_tag users_path, :class =>"form-control", :method => 'get' do %>
-      <%= text_field_tag :search, params[:search], :class =>"form-control" %>
-            <%= submit_tag "Search", :class => "btn btn-default" %>
-    <% end %>
-  <% end %>
-
-
-
+    <form class="form-inline my-2 my-lg-0">
+      <% if ((params[:controller] === "newspapers") && (params[:action] === "index")) %>
+        <%= form_tag newspapers_path, :class =>"form-control search-bar", :method => 'get' do %>
+          <%= text_field_tag :search, params[:search], :class =>"form-control" %>
+                <%= submit_tag "Search", :class => "btn btn-outline-success my-2 my-sm-0" %>
+                <i class="fa fa-search"></i>
+        <% end %>
+      <% else %>
+        <%= form_tag users_path, :class =>"form-control", :method => 'get' do %>
+          <%= text_field_tag :search, params[:search], :class =>"form-control search-bar" %>
+                <%= submit_tag "Search", :class => "btn btn-outline-success my-2 my-sm-0" %>
+        <% end %>
+      <% end %>
+    </form>
   </div>
 
   <div class=" float-right" >
     <ul class="navbar-nav ">
+      <% if admin_only  %>
+        <%= link_to "Admin", users_path(filter: "admin"), class: "nav-link badge badge-pill badge-success badge-login"%> 
+        <%= link_to "Users", users_path(filter: "user"), class: "nav-link badge badge-pill badge-success badge-login"%> 
+
+      <% end %>
+
       <% if user_signed_in? %>
+       
         <li class="nav-item">
-          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          <%= link_to current_user.first_name + current_user.last_name, "#", class: "badge badge-pill badge-success badge-login" %> 
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= current_user.last_name %> <%= current_user.first_name %> 
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to "Edit your profile", edit_user_registration_path(current_user), class: "nav-link" %>
-          </div>
+         <li class="nav-item">
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "badge badge-pill badge-success badge-login" %> 
         </li>
       <%else %>
-          <li><%= link_to "Log in", user_session_path, class: "nav-link float-right" %></li>
-          <li><%= link_to "Sign up", new_user_registration_path, class: "nav-link float-right" %></li>
+          <li><%= link_to "Sign In", user_session_path, class: "nav-link badge badge-pill badge-success badge-login" %></li>
+          <li><%= link_to "Sign Up", new_user_registration_path, class: "nav-link badge badge-pill badge-success badge-login" %></li>
         </div>
         
       <% end %>

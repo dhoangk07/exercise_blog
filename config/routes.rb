@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'welcome/index'
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
     resources :newspapers do
       resources :comments
@@ -8,10 +8,7 @@ Rails.application.routes.draw do
 
     resources :users
   
-  # namespace :admin do
-  #   resources :users
-  #   resources :newspapers
-  # end
+    get 'tags/:tag', to: 'newspapers#index', as: :tag
 
   root to: "welcome#index"
   end

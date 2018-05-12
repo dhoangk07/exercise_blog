@@ -1,12 +1,7 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
       <h1 class="sample" align="center"> Listing all Users</h1>
-      <div class="row offset-3">
-    <p align="center"><%= will_paginate @user, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %></p>
-    
-  </div>
-      
         <table class="table table-hover">
           <thead>
             <tr>
@@ -29,38 +24,24 @@
                 <td><%= user.first_name %></td>
                 <td><%= user.last_name %></td>
                 <td><%= user.email %><br/>
-                  
                 </td>
-
-                <td><%= gravatar_for user %><br/>
-                
+                <td> <%= image_tag user.image.url(:thumb), class: "rounded-circle" %> <br/>
                 <% if user.role == "admin" %>
                   <td><%= link_to "Admin", users_path(filter: "admin") %> </td>
                   <td><%= user.sign_in_count %></td>
-                  <td><%= Newspaper.all.where(user_id: user.id).count %></td>
-                  <td><%= Comment.all.where(user_id: user.id).count %></td>
+                  <td><%= newspaper_count(user) %></td>
+                  <td><%= comment_count(user)%></td>
                   </td>
-                    <td><%= link_to 'Show', user_path(user), class: "badge badge-pill badge-warning badge-user" %><br/>
-                    <%= link_to "Edit", edit_user_registration_path(user), class: "badge badge-pill badge-warning badge-user"%><br/>
-                    <%= link_to "Destroy", user_path(user),
-                      method: :delete,
-                      data: { confirm: "Are you sure? "}, class: "badge badge-pill badge-warning badge-user" %>
-                  </td>  
+                    <td> <%= render "users/action", user: user %></td>
                 <% else %>
                   <td><%= user.role.capitalize %></td>
                   <td><%= user.sign_in_count %></td>
-                  <td><%= Comment.all.where(user_id: params[:user_id]).count %></td>
-
-                  <td><% if Comment.all.where(user_id: params[:user_id]).count == 0 %>
+                  <td><%= comment_count(user) %></td>
+                  <td><% if comment_count(user) == 0 %>
                     <%= "0" %>
                     <% end %>
-                  </td>
-                    <td><%= link_to 'Show', user_path(user), class: "badge badge-pill badge-warning badge-user" %><br/>
-                    <%= link_to "Edit", edit_user_registration_path(user), class: "badge badge-pill badge-warning badge-user"%><br/>
-                    <%= link_to "Destroy", user_path(user),
-                      method: :delete,
-                      data: { confirm: "Are you sure? "}, class: "badge badge-pill badge-warning badge-user" %>
-                  </td>  
+                  </td> 
+                    <td> <%= render "users/action", user: user %></td>
                 <% end %>
               </tr>
             <% end %>
@@ -68,6 +49,12 @@
         </table>
       </div>
     </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row" >
+    <p align="center"><%= will_paginate @user, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+    </p>
   </div>
 </div>
 
