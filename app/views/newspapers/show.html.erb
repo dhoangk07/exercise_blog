@@ -1,74 +1,95 @@
-<h2 class="sample" align="center"> This is <%= @newspaper.title %> Newspaper</h2>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-9 col-xs-offset-2">
-      <div class="well well-lg">
-        <div ">
-          <h3> Title:<%= @newspaper.title %></h3>
-        </div>
+<div class="row">
+
+  <!-- Blog Entries Column -->
+  <div class="col-md-7">
+
+    <h1 class="my-4">Page Heading
+      <small>Secondary Text</small>
+    </h1>
+
+        <!-- Blog Post -->
+    <div class="card mb-4">
+      <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+      <div class="card-body">
+        <h2 class="card-title"><%= @newspaper.title %></h2>
+        <p class="card-text"><%= @newspaper.content %></p>
       </div>
-      <div >
-        <h3> Content:<%= @newspaper.content %></h3>
+     
+     <div class="card-body">
+        <%= render "comments/form" %>
+        <%= render "comments/comment" %> 
+     </div>
+
+      <div class="card-footer text-muted">
+        Posted on <%= time_ago_in_words(@newspaper.created_at)%> by
+        <a href="#"><%= @newspaper.user.first_name.capitalize %> <%= @newspaper.user.last_name.capitalize %></a>
       </div>
 
-      <h2>Add a comment:</h2>
-      <%= form_with(model: [ @newspaper, @newspaper.comments.build ], local: true) do |form| %>
-        <div class="row">
-          <div>
-          <p>
-              <%= form.hidden_field :user_id, :value => current_user.id %>
-            </p>
-            <p>
-              <%= form.label :commenter %><br>
-              <%= form.text_field :commenter %>
-            </p>
-            <p>
-              <%= form.label :body %><br>
-              <%= form.text_area :body %>
-            </p>
-            <p>
-              <%= form.submit %>
-            </p>
-          </div>
-        </div>
-      <% end %>
-
-      <% @newspaper.comments.order("created_at DESC").each do |comment| %>
-        <%if comment.user.present?%>
-          <div class="row">
-            <div class="col-xs-8 col-xs-offset-2">
-              <div class="well well-sm">
-                <h6> Comment :<%= comment.body %></h6> 
-                <div >
-                  <h6 class="badge badge-xs badge-link"><%= link_to("Commented by: #{comment.user.first_name}", newspaper_comment_path(@newspaper.comments)) if @newspaper.user %></h6><br/>
-                  <small >Created at:<%= time_ago_in_words(comment.created_at) %> ago | Last updated: <%= time_ago_in_words(comment.updated_at) %> ago</small>
-                  <% if user_signed_in? && current_user == comment.user%>
-                  <div >
-                    <%= link_to "Edit this comment", edit_newspaper_comment_path(comment), class: "badge badge-xs badge-primary" %> 
-                    <%= link_to "Delete this comment", newspaper_comment_path(comment), 
-                    method: :delete, 
-                    data: {confirm: "Are you sure you want to delete the newspaper?"}, class: "badge badge-xs badge-danger" %>
-                  </div>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
-          <% end %>
-      <% end %>
-      <p>
-        <%= link_to 'Destroy Comment', newspaper_comment_path(@newspaper, @newspaper.comments),
-        method: :delete,      
-        data: { confirm: 'Are you sure?' } %>
-      </p>
-
-      <%= link_to 'Edit', edit_newspaper_path(@newspaper) %> |
-      <%= link_to 'Back', newspapers_path %>
     </div>
+  
+  </div>
+
+  <!-- Sidebar Widgets Column -->
+  <div class="col-md-4">
+
+    <!-- Search Widget -->
+    <div class="card my-4">
+      <h5 class="card-header">Search</h5>
+      <div class="card-body">
+        <div class="input-group">
+          <%= form_tag newspapers_path, :class =>"form-inline ", :method => 'get' do %>
+            <%= text_field_tag :search, params[:search], :class =>"form-control" %>
+
+            <span class="input-group-btn ml-2">
+            <%= submit_tag "Go!", :class => "btn btn-secondary my-2 my-sm-0" %>
+            </span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Categories Widget -->
+    <div class="card my-4">
+      <h5 class="card-header">Categories</h5>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-6">
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="#">Web Design</a>
+              </li>
+              <li>
+                <a href="#">HTML</a>
+              </li>
+              <li>
+                <a href="#">Freebies</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-6">
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="#">JavaScript</a>
+              </li>
+              <li>
+                <a href="#">CSS</a>
+              </li>
+              <li>
+                <a href="#">Tutorials</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Side Widget -->
+    <div class="card my-4">
+      <h5 class="card-header">Side Widget</h5>
+      <div class="card-body">
+        You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+      </div>
+    </div>
+
   </div>
 </div>
-
-
-
-
-
