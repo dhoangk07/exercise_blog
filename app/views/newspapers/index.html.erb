@@ -1,7 +1,7 @@
 <div class="row">
 
   <!-- Blog Entries Column -->
-  <div class="col-md-8">
+  <div class="col-md-7">
 
     <h1 class="my-4">Page Heading
       <small>Secondary Text</small>
@@ -55,8 +55,8 @@
 
         </div>
         <div class="card-footer text-muted">
-          Posted on January 1, 2017 by
-          <a href="#">Start Bootstrap</a>
+          Posted on <%= time_ago_in_words(newspaper.created_at)%> by
+          <a href="#"><%= newspaper.user.first_name.capitalize %> <%= newspaper.user.last_name.capitalize %></a>
         </div>
       </div>
 
@@ -85,41 +85,6 @@
         </div>
       </div>
     </div>
-
-
-
-   <!--  <div class="card my-4">
-      <h5 class="card-header">Search</h5>
-      <div class="card-body">
-        <div class="input-group">
-
-          <% if ((params[:controller] === "newspapers") && (params[:action] === "index")) %>
-            <%= form_tag newspapers_path, :class =>"form-control search-bar", :method => 'get' do %>
-              <%= text_field_tag :search, params[:search], :class =>"form-control" %>
-               <%= submit_tag "Go!", :class => "btn btn-outline-success my-2 my-sm-0" %>
-            <% end %>
-          <% else %>
-          <%= form_tag users_path, :class =>"form-control", :method => 'get' do %>
-            <%= text_field_tag :search, params[:search], :class =>"form-control search-bar" %>
-                <%= submit_tag "Go!", :class => "btn btn-outline-success my-2 my-sm-0" %>
-          <% end %>
-          <% end %>
-        </div>
-      </div>
-    </div>
- -->
-
-
-
-
-
-
-
-
-
-
-
-
 
     <!-- Categories Widget -->
     <div class="card my-4">
