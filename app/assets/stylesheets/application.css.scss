@@ -44,9 +44,9 @@ body {
 
 .badge-user {
   width: 70px;
-  color: black;
-  border: 1px solid black;
-  background: #f8f9fa;
+  color: #106cd6;
+  border: 1px solid #106cd6;
+  background: white;
 }
 a.page-link{
   color: black;
@@ -56,4 +56,7 @@ a.page-link{
   float: none;
   margin: 0 auto;
 }
-    
+
+.navbar a:hover{
+  color:  #106cd6;
+}
