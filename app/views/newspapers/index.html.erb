@@ -26,7 +26,7 @@
         </div>
         <div class="card-footer text-muted">
           Posted on <%= time_ago_in_words(newspaper.created_at)%> by
-          <a href="#"><%= newspaper.user.first_name.capitalize %> <%= newspaper.user.last_name.capitalize %></a>
+          <%= link_to writer_full_name(newspaper), newspapers_path(filter: newspaper.user.id)%> 
         </div>
       </div>
 
