@@ -41,6 +41,17 @@
 
     <div class='form-group'>
       <div class="row">
+        <div class='col-md-2 content'>
+          <%= f.label :tag_list, "Tags (separated by commas)" %>
+        </div>
+        <div class='col-md-9'>
+          <%= f.text_field :tag_list, rows: 15, class:'form-control', placeholder: "Body of tag", autofocus: true %>
+        </div>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <div class="row">
         <div class='col-md-9 offset-2'>
           <% if ((params[:controller] === "newspapers") && (params[:action] === "new")) %>
             <%= f.submit "Create Newspaper", class: 'btn btn-success btn-lg btn-block' %>
@@ -50,18 +61,9 @@
         </div>
       </div>
     </div>
-
-    <div class="col-xs-4 col-xs-offset-4" align="center">
-      [ <%= link_to "Cancel to request and return to newspapers listing", newspapers_path %> ]
-    </div>
-  </div>
-
-  <div class="field">
-    <%= f.label :tag_list, "Tags (separated by commas)" %><br />
-    <%= f.text_field :tag_list %>
-  </div>
- 
-  <div class="actions">
-    <%= f.submit %>
   </div>
 <% end %>
+
+<div class="col-xs-4 col-xs-offset-4" align="center">
+  [ <%= link_to "Cancel to request and return to newspapers listing", newspapers_path %> ]
+</div>

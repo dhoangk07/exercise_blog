@@ -4,6 +4,7 @@ class NewspapersController < ApplicationController
   def index
     @newspapers = if params[:tag]
     @newspapers = Newspaper.tagged_with(params[:tag])
+
     elsif params[:filter].present?
       @newspapers = User.find(params[:filter]).newspapers.paginate(:page => params[:page], :per_page => 3)
     else
@@ -16,6 +17,7 @@ class NewspapersController < ApplicationController
 
   def new
     @newspaper = Newspaper.new
+
   end
 
   def create
@@ -33,7 +35,8 @@ class NewspapersController < ApplicationController
 
   def update
     if @newspaper.update(newspaper_params)
-      redirect_to newspapers_path
+      redirect_to newspaper_path(@newspaper)
+        
       flash[:success] =  "Newspaper already updated successful"
     else 
       render "edit"
@@ -41,6 +44,10 @@ class NewspapersController < ApplicationController
   end
 
   def show
+    if @tag.present?
+      @tagging = Tagging.all.where(newspaper: params[:id])
+      @tag = Tag.find(@tagging.first.tag_id)
+    end
   end
 
   def destroy
