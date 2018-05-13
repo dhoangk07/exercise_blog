@@ -27,9 +27,9 @@ class Newspaper < ApplicationRecord
 
   def self.search(search)
     if search
-       self.where('title LIKE ? OR content LIKE ?', "%#{search}%", "%#{search}%")
+      self.where('title ILIKE ? OR content ILIKE ?', "%#{search}%", "%#{search}%")
     else
       self
-     end
+    end
   end
 end
