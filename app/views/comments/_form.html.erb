@@ -1,20 +1,21 @@
 <%= form_with(model: [ @newspaper, @newspaper.comments.build ], local: true) do |form| %>
-  <div class="row">
-    <div>
+<div class="row">
+  <div>
     <p>
-        <%= form.hidden_field :user_id, :value => current_user.id %>
-      </p>
-      <p>
-        <%= form.label :commenter %><br>
-        <%= form.text_field :commenter %>
-      </p>
-      <p>
-        <%= form.label :body %><br>
-        <%= form.text_area :body %>
-      </p>
-      <p>
-        <%= form.submit %>
-      </p>
-    </div>
+      <%= form.hidden_field :user_id, :value => current_user.id %>
+    </p>
+    <p>
+      <%= form.label :commenter %><br>
+      <%= form.text_field :commenter %>
+    </p>
+    <p>
+      <%= form.label :body %><br>
+      <%= form.text_area :body %>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
   </div>
+</div>
 <% end %>
+
