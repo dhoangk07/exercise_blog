@@ -1,0 +1,31 @@
+<% @newspaper.comments.order("created_at DESC").each do |comment| %>
+  <%if comment.user.present?%>
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
+        <div class="well well-sm">
+          <h6> Comment :<%= comment.body %></h6> 
+          <div >
+            <h6 class="badge badge-xs badge-link"><%= link_to("Commented by: #{comment.user.first_name}", newspaper_comment_path(@newspaper.comments)) if @newspaper.user %></h6><br/>
+            <small >Created at:<%= time_ago_in_words(comment.created_at) %> ago | Last updated: <%= time_ago_in_words(comment.updated_at) %> ago</small>
+            <% if user_signed_in? && current_user == comment.user%>
+            <div >
+              <%= link_to "Edit this comment", edit_newspaper_comment_path(comment), class: "badge badge-xs badge-primary" %> 
+              <%= link_to "Delete this comment", newspaper_comment_path(comment), 
+              method: :delete, 
+              data: {confirm: "Are you sure you want to delete the newspaper?"}, class: "badge badge-xs badge-danger" %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+<% end %>
+
+<p>
+  <%= link_to 'Destroy Comment', newspaper_comment_path(@newspaper, @newspaper.comments),
+               method: :delete,      
+                 data: { confirm: 'Are you sure?' } %>
+</p>
+      <%= link_to 'Edit', edit_newspaper_path(@newspaper) %> |
+      <%= link_to 'Back', newspapers_path %>
