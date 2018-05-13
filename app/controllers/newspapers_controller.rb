@@ -4,10 +4,11 @@ class NewspapersController < ApplicationController
   def index
     @newspapers = if params[:tag]
     @newspapers = Newspaper.tagged_with(params[:tag])
+    elsif params[:filter].present?
+      @newspapers = User.find(params[:filter]).newspapers.paginate(:page => params[:page], :per_page => 3)
     else
       @newspapers = Newspaper.all.order('created_at DESC').paginate(:page => params[:page], :per_page => 3)
     end
-    
     if params[:search].present?
       @newspapers = @newspapers.search(params[:search])
     end
