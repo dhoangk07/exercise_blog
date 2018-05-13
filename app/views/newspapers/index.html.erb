@@ -63,9 +63,8 @@
     <% end %>
 
     <!-- Pagination -->
-    <div class="row" >
-      <p align="center"><%= will_paginate @newspaper, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
-      </p>
+    <div class="row" align="center">
+      <%= will_paginate @newspaper, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
     </div>
 
   </div>

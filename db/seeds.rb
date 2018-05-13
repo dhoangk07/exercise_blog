@@ -13,17 +13,17 @@
 #              activated: true,
 #              activated_at: Time.zone.now)
 
-# 99.times do |n|
-#   first_name  = Faker::Name.first_name
-#   last_name  = Faker::Name.last_name
-#   email = "example-#{n+1}@gmail.com"
-#   password = "1234567"
-#   User.create!(first_name:  first_name,
-#                last_name: last_name,
-#                email: email,
-#                password:              1234567,
-#                password_confirmation: 1234567)
-# end
+99.times do |n|
+  first_name  = Faker::Name.first_name
+  last_name  = Faker::Name.last_name
+  email = "example-#{n+1}@gmail.com"
+  password = "1234567"
+  User.create!(first_name:  first_name,
+               last_name: last_name,
+               email: email,
+               password:              1234567,
+               password_confirmation: 1234567)
+end
 
 # 500.times do |n|
 #   first_name  = Faker::Name.first_name
