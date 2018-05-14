@@ -19,7 +19,7 @@
 
           <div class="btn-group-toggle" data-toggle="buttons">
             <label >
-               <i class="fa fa-tags btn btn-secondary tag-list">Tags</i>
+               <i class="fa fa-tags btn btn-secondary tag-list">  Tags</i>
                <%= raw newspaper.tags.map(&:name).map { |t| link_to t, tag_path(t), class: "btn btn-light tag-list"}.join(', ') %>
             </label>
           </div>

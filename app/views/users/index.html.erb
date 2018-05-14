@@ -20,7 +20,7 @@
           <tbody>
             <% @users.each_with_index do |user,index| %>
               <tr>
-                <td><%= index +1 %></td>
+                <td><%= index %></td>
                 <td><%= user.first_name.capitalize %></td>
                 <td><%= user.last_name.capitalize %></td>
                 <td><%= user.email %><br/>

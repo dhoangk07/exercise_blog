@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
     resources :users
   
-    get 'tags/:tag', to: 'newspapers#index', as: :tag
+    get 'tags/:tag', to: 'newspapers#index', as: :tag, :constraints  => { :tag => /[^\/]+/ }
 
   root to: "welcome#index"
   end
