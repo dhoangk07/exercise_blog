@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     elsif params[:filter] == "user" 
       @users = User.where(role: params[:filter]).order('created_at ASC').paginate(:page => params[:page], :per_page => 5)
     else
-      @users = User.paginate(:page => params[:page], :per_page => 5)
+      @users = User.order('first_name ASC').paginate(:page => params[:page], :per_page => 5)
     end
 
     if params[:search].present?
@@ -20,12 +20,14 @@ class UsersController < ApplicationController
   end
 
   def edit
+    session[:back_url] = request.referrer
   end
 
   def update
     if @user.update(user_params)
-      redirect_to users_path
       flash[:success] = "#{@user.first_name} #{@user.last_name} has been uploaded successfully "
+      redirect_path = session.delete(:back_url) || users_path
+      redirect_to redirect_path
     else 
       render "edit"   
     end
