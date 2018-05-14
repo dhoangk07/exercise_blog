@@ -6,9 +6,8 @@
     <h1 class="my-4">Page Heading
       <small>Secondary Text</small>
     </h1>
-
     <% @newspapers.each do |newspaper| %>
-    <!-- Blog Post -->
+      <!-- Blog Post -->
       <div class="card mb-4">
         <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
         <div class="card-body">
@@ -20,11 +19,13 @@
 
           <%= link_to "Read More", newspaper_path(newspaper), class: "btn btn-primary"%> 
           <% if newspaper.user == current_user %>
-            <%= link_to "Edit", edit_newspaper_path(newspaper), class: "btn btn-primary" %> 
-            <%= link_to "Destroy", newspaper_path(newspaper),
-                      method: :delete,
-                      data: { confirm: "Are you sure? "}, class: "btn btn-primary" %> 
+          <%= link_to "Edit", edit_newspaper_path(newspaper), class: "btn btn-primary" %> 
+          <%= link_to "Destroy", newspaper_path(newspaper),
+          method: :delete,
+          data: { confirm: "Are you sure? "}, class: "btn btn-primary" %> 
           <% end %>
+
+          <%= raw newspaper.tags.map(&:name).map { |t| link_to t, tag_path(t), class: "btn btn-primary"}.join(', ') %>
 
           <!-- Modal -->
 
@@ -34,12 +35,11 @@
           <%= link_to writer_full_name(newspaper), newspapers_path(filter: newspaper.user.id)%> 
         </div>
       </div>
-
     <% end %>
 
     <!-- Pagination -->
     <div class="row pagination" align="center">
-      <%= will_paginate @newspaper, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+      <%= will_paginate @newspapers, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
     </div>
 
   </div>
@@ -63,17 +63,20 @@
       </div>
     </div>
 
-    <!-- Categories Widget -->
+     <!-- Categories Widget -->
     <div class="card my-4">
       <h5 class="card-header">Categories</h5>
       <div class="card-body">
         <div class="row">
           <div class="col-lg-6">
-            <% @newspapers.each do |newspaper| %>
-            <ul class="list-unstyled mb-0">
-              <li>
-                <a href="#"><%= raw newspaper.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></a>
-              </li>
+            <% if @tags.present? %>
+              <% @tags.each do |tag| %>
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <%= link_to tag.name, newspapers_path(filter_tag: tag.id) %>
+                  </li>
+                </ul>
+              <% end %>
             <% end %>
           </div>
         </div>

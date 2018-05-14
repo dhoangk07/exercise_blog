@@ -2,11 +2,14 @@ class NewspapersController < ApplicationController
   before_action :set_newspaper ,only: [:edit, :update, :show, :destroy]
   before_action :authorize, except: [:show, :index]
   def index
+    @tags = Tag.all
     @newspapers = if params[:tag]
-    @newspapers = Newspaper.tagged_with(params[:tag])
-
+    @newspapers = Newspaper.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 3)
     elsif params[:filter].present?
       @newspapers = User.find(params[:filter]).newspapers.paginate(:page => params[:page], :per_page => 3)
+    elsif params[:filter_tag].present?
+      newspaper_id = Tagging.all.find(params[:filter_tag]).newspaper_id
+      @newspapers = Newspaper.where(id: newspaper_id).paginate(:page => params[:page], :per_page => 3)
     else
       @newspapers = Newspaper.all.order('created_at DESC').paginate(:page => params[:page], :per_page => 3)
     end
@@ -17,7 +20,6 @@ class NewspapersController < ApplicationController
 
   def new
     @newspaper = Newspaper.new
-
   end
 
   def create
@@ -34,9 +36,9 @@ class NewspapersController < ApplicationController
   end
 
   def update
+
     if @newspaper.update(newspaper_params)
       redirect_to newspaper_path(@newspaper)
-        
       flash[:success] =  "Newspaper already updated successful"
     else 
       render "edit"
@@ -44,10 +46,7 @@ class NewspapersController < ApplicationController
   end
 
   def show
-    if @tag.present?
-      @tagging = Tagging.all.where(newspaper: params[:id])
-      @tag = Tag.find(@tagging.first.tag_id)
-    end
+      @tags = Tag.all
   end
 
   def destroy
