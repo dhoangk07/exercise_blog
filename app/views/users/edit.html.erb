@@ -3,9 +3,8 @@
     <div class="col-sm-12 col-sm-offset-12">
       <div class="light-well">
         <h2 class="page-header text-center edit">Edit <%=@user.first_name %><%=@user.first_name %></h2>
-
+        
         <%= form_for @user, html: { multipart: true }, html: { class: "form-horizontal center"} do |f| %>
-
           <div class="form-group">
             <%= f.text_field :first_name, autofocus: true, class: "form-control", placeholder: "Please Enter Your First Name" %>
           </div>

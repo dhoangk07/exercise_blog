@@ -17,6 +17,12 @@
 
           <!-- Button trigger modal -->
 
+          <div class="btn-group-toggle" data-toggle="buttons">
+            <label >
+               <i class="fa fa-tags btn btn-secondary tag-list">Tags</i>
+               <%= raw newspaper.tags.map(&:name).map { |t| link_to t, tag_path(t), class: "btn btn-light tag-list"}.join(', ') %>
+            </label>
+          </div>
           <%= link_to "Read More", newspaper_path(newspaper), class: "btn btn-primary"%> 
           <% if newspaper.user == current_user %>
           <%= link_to "Edit", edit_newspaper_path(newspaper), class: "btn btn-primary" %> 
@@ -24,8 +30,6 @@
           method: :delete,
           data: { confirm: "Are you sure? "}, class: "btn btn-primary" %> 
           <% end %>
-
-          <%= raw newspaper.tags.map(&:name).map { |t| link_to t, tag_path(t), class: "btn btn-primary"}.join(', ') %>
 
           <!-- Modal -->
 
@@ -67,19 +71,13 @@
     <div class="card my-4">
       <h5 class="card-header">Categories</h5>
       <div class="card-body">
-        <div class="row">
-          <div class="col-lg-6">
             <% if @tags.present? %>
               <% @tags.each do |tag| %>
-                <ul class="list-unstyled mb-0">
-                  <li>
-                    <%= link_to tag.name, newspapers_path(filter_tag: tag.id) %>
-                  </li>
-                </ul>
+                <span class="list-unstyled mb-0">
+                    <button type="button" class="btn btn-outline-primary btn-sm btn-tag"><%= link_to tag.name, newspapers_path(filter_tag: tag.id) %></button>
+                </span>
               <% end %>
             <% end %>
-          </div>
-        </div>
       </div>
     </div>
 
