@@ -6,4 +6,12 @@ module ApplicationHelper
       yield(tag, classes[index.round])
     end
   end
+
+  def active_class(controller, action)
+    if controller_name == controller && action_name == action
+      'active-navigation'
+    else
+      ''
+    end
+  end
 end
