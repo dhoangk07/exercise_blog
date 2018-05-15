@@ -1,11 +1,12 @@
 <div class="container sample offset-3">
-  <div class="row col-md-6 " >
-    <h2 class="titleprofile" align="center"><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %>'s' Profile</h2>
-    <div class="img-fluid offset-1">
-      <%= image_tag @user.image.url(:medium), class: "rounded-circle" %>
-    </div>
-  </div>
   <div class="col-md-6 " >
+    <nav arialabel="breadcrumb" >
+      <span for="exampleInputEmail1" class="exampleInputEmail1"><%= @user.last_name.capitalize %>'s' Profile</span>
+      <ol class="breadcrumb" align="center">
+        <li class="breadcrumbitem active" ariacurrent="page"><h3> <%= image_tag @user.image.url(:medium), class: "rounded-circle" %></h3></li>
+      </ol>
+    </nav>
+    
     <nav arialabel="breadcrumb" >
       <span for="exampleInputEmail1" class="exampleInputEmail1">Email address</span>
       <ol class="breadcrumb" align="center">
@@ -31,5 +32,4 @@
       </ol>
     </nav>
   </div>
-</div>
 </div>
