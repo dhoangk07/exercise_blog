@@ -113,3 +113,9 @@ td:hover {
     cursor: pointer;
     background-color: #eee;
 }
+
+a.nav-link.active-navigation {
+    background-color: #343a40;
+    color: red !important;
+
+}
