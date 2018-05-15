@@ -3,9 +3,15 @@ class UsersController < ApplicationController
   def index
     if params[:filter] == "admin" 
       @users = User.where(role: params[:filter]).paginate(:page => params[:page], :per_page => 5)
-
     elsif params[:filter] == "user" 
       @users = User.where(role: params[:filter]).order('created_at ASC').paginate(:page => params[:page], :per_page => 5)
+    elsif params[:order] == "oldest" 
+      @users = User.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
+    elsif params[:order] == "newsest" 
+      @users = User.order("created_at ASC").paginate(:page => params[:page], :per_page => 5)
+    elsif params[:order] == "alphabet" 
+      @users = User.order("first_name ASC").paginate(:page => params[:page], :per_page => 5)
+
     else
       @users = User.paginate(:page => params[:page], :per_page => 5)
     end

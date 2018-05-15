@@ -1,7 +1,20 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
-      <h1 class="sample" align="center"> Listing all Users</h1>
+      <h1 class="sample" align="center"> Listing all Users 
+
+        <small>
+          <li class="nav-item dropdown" style="list-style-type:none">
+            <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-sort-amount-down"></i> SORT BY
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "Date created(oldest)", newspapers_path(order: "oldest"), class: "dropdown-item" %> 
+              <%= link_to "Date created(newest)", newspapers_path(order: "newest"), class: "dropdown-item" %> 
+              <%= link_to "Alphabet", newspapers_path(order: "alphabet"), class: "dropdown-item" %> 
+            </div>
+          </li>
+        </small>
+      </h1>
         <table class="table table-hover">
           <thead>
             <tr>
@@ -19,7 +32,7 @@
           </thead>
           <tbody>
             <% @users.each_with_index do |user,index| %>
-              <tr>
+              <tr class="tr-usertable" data-target="<%= edit_user_path(user) %>">
                 <td><%= index %></td>
                 <td><%= user.first_name.capitalize %></td>
                 <td><%= user.last_name.capitalize %></td>
