@@ -13,16 +13,16 @@
 #              activated: true,
 #              activated_at: Time.zone.now)
 
-999.times do |n|
+99.times do |n|
   first_name  = Faker::Name.first_name
   last_name  = Faker::Name.last_name
   email = Faker::Internet.email
   password = "1234567"
-  image = Faker::Avatar.image(slug = nil, size = '300x300', format = 'png')
+  # image = Faker::Avatar.image(slug = nil, size = '300x300', format = 'png')
   User.create!(first_name:  first_name,
                last_name: last_name,
                email: email,
-               image: image,
+               # image: image,
                password: password,
                password_confirmation: password)
 end

@@ -1,18 +1,17 @@
 require 'rails_helper'
 
-RSpec.describe "search form", :type => :request, js: true do
+RSpec.describe "search form", :type => :request do
   it "display result after click search form" do
-    title = Faker::Lorem.sentence(1)
+    visit "http://localhost:3000/newspapers"
 
-    click_link "Search"
+    user_1 = User.create!(first_name: "Hoang", last_name: "Dinh", email: "dhoanghvs@gmail.com", password: "1234567", user_id: "1")
+    user_2 = User.create!(first_name: "Huy", last_name: "Dinh", email: "dhuy@gmail.com", password: "1234567", user_id: "2")
 
-    debugger
-    fill_in :search, with: title
-    click_button 'Search'
-
-    sleep 20
-
-    expect(page).to have_text(title)
-    # expect(page).not_to have_text(job2.title)
+    VietNam = Newspaper.create!(title: "VietNam", content: "Lorem", user_id: "1", role: "user")
+    Laos = Newspaper.create!(title: "Laos", content: "Lorem1", user_id: "2", role: "user")
+    expect(page).to have_button("Go!")
+    expect(page).to have_content("Search")
+    # expect(page).to to respond to has_form?('Search', type: 'text')
+    expect(Newspaper.search("VietNam")).to eq([vietnam])
   end
 end
