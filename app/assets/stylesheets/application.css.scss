@@ -33,12 +33,12 @@ body {
 }
 
 .table td {
-  text-align: center;
+  text-align: left;
   vertical-align: middle;
 }
 
 .table th {
-  text-align: center;
+  text-align: left;
   vertical-align: middle;
 }
 
@@ -152,4 +152,13 @@ img.rounded-circle {
 .card-img-top{    
   width: 700px;
   height: 400px;
+}
+
+.edit-profile{
+  padding-left: 23px;
+}
+.edit{
+    padding-left: 230px;
+    padding-top: 20px;
+    padding-bottom: 0px;
 }

@@ -2,32 +2,20 @@
   <div class="row">
     <div class="col-md-12">
       <h1 class="sample" align="center"> Listing all Users 
-
-        <small>
-          <li class="nav-item dropdown" style="list-style-type:none">
-            <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-sort-amount-down"></i> SORT BY
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to "Date created(oldest)", newspapers_path(order: "oldest"), class: "dropdown-item" %> 
-              <%= link_to "Date created(newest)", newspapers_path(order: "newest"), class: "dropdown-item" %> 
-              <%= link_to "Alphabet", newspapers_path(order: "alphabet"), class: "dropdown-item" %> 
-            </div>
-          </li>
-        </small>
       </h1>
         <table class="table table-hover">
           <thead>
             <tr>
-              <th>No.</th>
-              <th>F.Name</th>
-              <th>L.Name</th>
-              <th>Email</th>
-              <th>Profile</th>
-              <th>Role</th>
-              <th>Sign In Count</th>
-              <th>Newspapers Count</th>
-              <th>Comments Count</th>
-              <th>Edit Profile</th>
+              <th><%= link_to "No.", "#" %></th>
+              <th><%= link_to "F.Name", users_path(order: "first_name")%> </th>
+              <th><%= link_to "L.Name", users_path(order: "last_name")%></th>
+              <th><%= link_to "Email", users_path(order: "email")%></th>
+              <th><%= link_to "Profile", "#"%></th>
+              <th><%= link_to "Role", "#"%></th>
+              <th><%= link_to "SignIn", users_path(order: "sign_in") %></th>
+              <th><%= link_to "Newspapers", "#"%></th>
+              <th><%= link_to "Comments", "#"%></th>
+              <th ><%= link_to "Edit Profile", "#"%></th>
             </tr>
           </thead>
           <tbody>
@@ -40,7 +28,7 @@
                 </td>
                 <td class="avatar"> <%= image_tag user.avatar_url_user, class: "rounded-circle" %> <br/>
                 <% if user.role == "admin" %>
-                  <td><%= link_to "Admin", users_path(filter: "admin") %> </td>
+                  <td><%= "Admin" %> </td>
                   <td><%= user.sign_in_count %></td>
                   <td><%= newspaper_count(user) %></td>
                   <td><%= comment_count(user)%></td>

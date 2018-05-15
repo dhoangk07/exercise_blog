@@ -5,13 +5,15 @@ class UsersController < ApplicationController
       @users = User.where(role: params[:filter]).paginate(:page => params[:page], :per_page => 5)
     elsif params[:filter] == "user" 
       @users = User.where(role: params[:filter]).order('created_at ASC').paginate(:page => params[:page], :per_page => 5)
-    elsif params[:order] == "oldest" 
-      @users = User.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
-    elsif params[:order] == "newsest" 
-      @users = User.order("created_at ASC").paginate(:page => params[:page], :per_page => 5)
-    elsif params[:order] == "alphabet" 
+    elsif params[:order] == "email" 
+      @users = User.order("email DESC").paginate(:page => params[:page], :per_page => 5)
+    elsif params[:order] == "sign_in" 
+      @users = User.order("sign_in_count DESC").paginate(:page => params[:page], :per_page => 5)
+    elsif params[:order] == "last_name" 
+      @users = User.order("last_name ASC").paginate(:page => params[:page], :per_page => 5)
+    elsif params[:order] == "first_name" 
       @users = User.order("first_name ASC").paginate(:page => params[:page], :per_page => 5)
-
+    
     else
       @users = User.paginate(:page => params[:page], :per_page => 5)
     end
