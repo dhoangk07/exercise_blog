@@ -125,9 +125,30 @@ a#navbarDropdown {
     color: black;
     position: absolute;
 }
+
 img.rounded-circle {
     width: 100px;
     height: 100px;
+}
+.breadcrumb-avatar{
+      width: 200px;
+    height: 200px;
+    border-radius: 113px;
+}
+/*
+.content{
+  padding-left: 135px;
+  padding-top: 6px;
+}
+*/
+
+.title{
+  padding-left: 135px;
+  padding-top: 6px;
+}
+.input.btn.btn-success.btn-lg.btn-block{
+  width: 870px;
+}
 .card-img-top{    
   width: 700px;
   height: 400px;
