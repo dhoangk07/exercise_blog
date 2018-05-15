@@ -11,7 +11,7 @@ RSpec.describe "sign in page", :type => :request, js: true do
 
     visit "/"
     click_link "Sign In"
-
+sleep 30
     fill_in "user_email", with: email
     fill_in "user_password", with: password
     click_button "Sign In"

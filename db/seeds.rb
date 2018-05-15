@@ -13,16 +13,18 @@
 #              activated: true,
 #              activated_at: Time.zone.now)
 
-99.times do |n|
+999.times do |n|
   first_name  = Faker::Name.first_name
   last_name  = Faker::Name.last_name
-  email = "example-#{n+1}@gmail.com"
+  email = Faker::Internet.email
   password = "1234567"
+  image = Faker::Avatar.image(slug = nil, size = '300x300', format = 'png')
   User.create!(first_name:  first_name,
                last_name: last_name,
                email: email,
-               password:              1234567,
-               password_confirmation: 1234567)
+               image: image,
+               password: password,
+               password_confirmation: password)
 end
 
 # 500.times do |n|
@@ -40,19 +42,19 @@ end
 # Microposts
 users = User.order(:created_at).take(6)
 50.times do
-  title = "Thailand"
+  title = Faker::Lorem.sentence(2)
   content = Faker::Lorem.sentence(100)
   users.each { |user| user.newspapers.create!(title: title, content: content) }
 end
 
 #Comments
 
-# newspapers = Newspaper.take(50)
-# 10.times do
-#   commenter = "Hanoi"
-#   body = Faker::Lorem.sentence(100)
-#   newspapers.each { |newspaper| newspaper.comments.create!(commenter: commenter, body: body, user_id: "5")}
-# end
+newspapers = Newspaper.take(50)
+10.times do
+  commenter = "Hanoi"
+  body = Faker::Lorem.sentence(100)
+  newspapers.each { |newspaper| newspaper.comments.create!(commenter: commenter, body: body, user_id: User.pluck(:id).sample)}
+end
 
  
 # end
