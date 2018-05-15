@@ -10,6 +10,14 @@ class NewspapersController < ApplicationController
     elsif params[:filter_tag].present?
       newspaper_id = Tagging.all.find(params[:filter_tag]).newspaper_id
       @newspapers = Newspaper.where(id: newspaper_id).paginate(:page => params[:page], :per_page => 3)
+    elsif params[:order] == "oldest"
+      @newspaper = Newspaper.order("created_at DESC").paginate(:page => params[:page], :per_page => 3)
+    elsif params[:order] == "newest"
+      @newspaper = Newspaper.order("created_at ASC").paginate(:page => params[:page], :per_page => 3)
+    elsif params[:order] == "alphabet"
+      @newspaper = Newspaper.order("title ASC").paginate(:page => params[:page], :per_page => 3)
+    elsif params[:order] == "like"
+      @newspaper = Newspaper.order("created_at DESC").paginate(:page => params[:page], :per_page => 3)
     else
       @newspapers = Newspaper.all.order('created_at DESC').paginate(:page => params[:page], :per_page => 3)
     end
