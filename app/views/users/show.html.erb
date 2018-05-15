@@ -1,33 +1,33 @@
-<div class="container sample offset4">
-  <div class="row colmd6" >
-    <h2 class="titleprofile"><%= @user.first_name %> <%= @user.last_name %>'s' Profile</h2>
-    <div class="image">
-      <img src="/assets/1.jpg" alt="San Francisco" width="200" height="200" class="roundedcircle">
+<div class="container sample offset-3">
+  <div class="row col-md-6 " >
+    <h2 class="titleprofile" align="center"><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %>'s' Profile</h2>
+    <div class="img-fluid offset-1">
+      <%= image_tag @user.image.url(:medium), class: "rounded-circle" %>
     </div>
   </div>
-  <div>
-    <nav arialabel="breadcrumb">
-      <span for="exampleInputEmail1">Email address</span>
-      <ol class="breadcrumb">
+  <div class="col-md-6 " >
+    <nav arialabel="breadcrumb" >
+      <span for="exampleInputEmail1" class="exampleInputEmail1">Email address</span>
+      <ol class="breadcrumb" align="center">
         <li class="breadcrumbitem active" ariacurrent="page"><h3> <%= @user.email %></h3></li>
       </ol>
     </nav>
     <nav arialabel="breadcrumb">
       <span for="exampleInputEmail1">First Name</span>
       <ol class="breadcrumb">
-        <li class="breadcrumbitem active" ariacurrent="page"><h3> <%= @user.first_name %></h3></li>
+        <li class="breadcrumbitem active" ariacurrent="page"><h3> <%= @user.first_name.capitalize %></h3></li>
       </ol>
     </nav>
     <nav arialabel="breadcrumb">
       <span for="exampleInputEmail1">Last Name</span>
       <ol class="breadcrumb">
-        <li class="breadcrumbitem active" ariacurrent="page"><h3> <%= @user.last_name %></h3></li>
+        <li class="breadcrumbitem active" ariacurrent="page"><h3> <%= @user.last_name.capitalize %></h3></li>
       </ol>
     </nav>
     <nav arialabel="breadcrumb">
       <span for="exampleInputEmail1">Role</span>
       <ol class="breadcrumb">
-        <li class="breadcrumbitem active" ariacurrent="page"><h3 class="role"> <%= @user.role %></h3></li>
+        <li class="breadcrumbitem active" ariacurrent="page"><h3 class="role"> <%= @user.role.capitalize %></h3></li>
       </ol>
     </nav>
   </div>
