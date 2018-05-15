@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       @users = User.order("first_name ASC").paginate(:page => params[:page], :per_page => 5)
     
     else
-      @users = User.paginate(:page => params[:page], :per_page => 5)
+      @users = User.order('first_name ASC').paginate(:page => params[:page], :per_page => 5)
     end
 
     if params[:search].present?
