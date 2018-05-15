@@ -20,12 +20,14 @@ class UsersController < ApplicationController
   end
 
   def edit
+    session[:back_url] = request.referrer
   end
 
   def update
     if @user.update(user_params)
-      redirect_to users_path
       flash[:success] = "#{@user.first_name} #{@user.last_name} has been uploaded successfully "
+      redirect_path = session.delete(:back_url) || users_path
+      redirect_to redirect_path
     else 
       render "edit"   
     end
