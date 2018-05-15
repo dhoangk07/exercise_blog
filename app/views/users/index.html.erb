@@ -33,12 +33,11 @@
           <tbody>
             <% @users.each_with_index do |user,index| %>
               <tr class="tr-usertable clickable-to-user" data-target="<%= user_path(user) %>">
-                <td><%= index %></td>
+                <td><%= params[:page].present? ? index+5*(params[:page].to_i-1) : (index+1) %></td>
                 <td><%= user.first_name.capitalize %></td>
                 <td><%= user.last_name.capitalize %></td>
                 <td><%= user.email %><br/>
                 </td>
-                <td> <%= image_tag user.image.url(:thumb), class: "rounded-circle" %> <br/>
                 <td class="avatar"> <%= image_tag user.avatar_url_user, class: "rounded-circle" %> <br/>
                 <% if user.role == "admin" %>
                   <td><%= link_to "Admin", users_path(filter: "admin") %> </td>
