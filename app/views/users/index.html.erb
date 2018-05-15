@@ -39,6 +39,7 @@
                 <td><%= user.email %><br/>
                 </td>
                 <td> <%= image_tag user.image.url(:thumb), class: "rounded-circle" %> <br/>
+                <td class="avatar"> <%= image_tag user.avatar_url_user, class: "rounded-circle" %> <br/>
                 <% if user.role == "admin" %>
                   <td><%= link_to "Admin", users_path(filter: "admin") %> </td>
                   <td><%= user.sign_in_count %></td>
