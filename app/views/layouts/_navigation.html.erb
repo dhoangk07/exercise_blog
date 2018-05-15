@@ -1,7 +1,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="#">Start Bootstrap</a>
+    <%= link_to "Create Newspaper", new_newspaper_path, class: "navbar-brand"  %> 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,27 +9,26 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
+          <%= link_to "Newspapers", newspapers_path, class: "nav-link #{active_class("newspapers", "index")}"  %> 
+        </li>
+        <li class="nav-item active">
           <a><%= link_to "Home", root_path, class: "nav-link #{active_class("welcome", "index")}" %> </a>
         </li>
 
+        
+      </ul>
+
+      <ul class="navbar-nav ml-auto">
         <% if admin_only %>
           <li class="nav-item">
-            
             <a><%= link_to "Admin", users_path(filter: "admin"), class: "nav-link #{active_class("users", "index")}" %> </a>
-            
           </li>
           
           <li class="nav-item">
             <a><%= link_to "Users", users_path(filter: "user"), class: "nav-link #{active_class("users", "index")}" %> </a>
           </li>
         <% end %>
-      </ul>
-
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <%= link_to "Newspapers", newspapers_path, class: "nav-link #{active_class("newspapers", "index")}"  %> 
-        </li>
-
+        
         <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to current_user.first_name.capitalize + " " + current_user.last_name.capitalize, user_path(current_user), class: "nav-link" %> 
