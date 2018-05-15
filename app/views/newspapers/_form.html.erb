@@ -14,6 +14,10 @@
             </div>
           <% end %>
         </div>
+
+
+
+
       </div>
     </div>
 
@@ -52,7 +56,8 @@
 
     <div class='form-group'>
       <div class="row">
-        <div class='col-md-9 offset-2'>
+        <div class='col-md-2'></div>
+        <div class='col-md-9'>
           <% if ((params[:controller] === "newspapers") && (params[:action] === "new")) %>
             <%= f.submit "Create Newspaper", class: 'btn btn-success btn-lg btn-block' %>
           <% else %>
