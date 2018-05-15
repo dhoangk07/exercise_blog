@@ -70,6 +70,6 @@ class NewspapersController < ApplicationController
 
   private
   def newspaper_params
-    params.require(:newspaper).permit(:title, :content, :search, :tag_list)
+    params.require(:newspaper).permit(:title, :content, :search, :tag_list, :image)
   end
 end

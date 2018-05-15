@@ -1,7 +1,7 @@
 <%= form_for(@newspaper, html: {class: "form-horizontal"}) do |f| %>
   <div class="container">
     <div class="row">
-      <div class="col-md-9 offset-2">
+      <div class="col-md-10 offset-1">
         <div class="form-group">
           <% if @newspaper.errors.any? %>
             <div class="error_explanation">
@@ -14,17 +14,13 @@
             </div>
           <% end %>
         </div>
-
-
-
-
       </div>
     </div>
 
     <div class="form-group">
       <div class="row">
-        <div class=' col-md-2 title'>
-          <%= f.label :title %>
+        <div class=' col-md-2'>
+          <a class="title"><%= f.label :title %></a>
         </div>
         <div class='col-md-9'>
           <%= f.text_field :title, class:'form-control', placeholder: "Title of newspaper", autofocus: true %>
@@ -35,7 +31,7 @@
     <div class='form-group'>
       <div class="row">
         <div class='col-md-2 content'>
-          <%= f.label :content %>
+          <a class="title"><%= f.label :content %></a>
         </div>
         <div class='col-md-9'>
           <%= f.text_area :content, rows: 15, class:'form-control', placeholder: "Body of newspaper", autofocus: true %>
@@ -46,13 +42,26 @@
     <div class='form-group'>
       <div class="row">
         <div class='col-md-2 content'>
-          <%= f.label :tag_list, "Tags (separated by commas)" %>
+          <a class="title"><%= f.label :tag_list%></a>
         </div>
         <div class='col-md-9'>
           <%= f.text_field :tag_list, rows: 15, class:'form-control', placeholder: "Body of tag", autofocus: true %>
         </div>
       </div>
     </div>
+
+    <% if ((params[:controller] === "newspapers") && (params[:action] === "edit")) %>
+      <div class='form-group'>
+        <div class="row">
+          <div class='col-md-2 content'>
+            <a class="title"><%= f.label :image %></a>s
+          </div>
+          <div class='col-md-9'>
+            <%= f.text_field :image, rows: 15, class:'form-control', placeholder: "Insert Image", autofocus: true %>
+          </div>
+        </div>
+      </div>
+    <% end %>
 
     <div class='form-group'>
       <div class="row">
