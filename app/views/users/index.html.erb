@@ -7,7 +7,7 @@
           <thead>
             <tr>
               <th><%= link_to "No.", "#" %></th>
-              <th><%= link_to "F.Name", users_path(order: "first_name")%> </th>
+              <th><%= link_to "F.Name", users_path(order: "first_name", direction: switch(@first_name_direction))%> </th>
               <th><%= link_to "L.Name", users_path(order: "last_name")%></th>
               <th><%= link_to "Email", users_path(order: "email")%></th>
               <th><%= link_to "Profile", "#"%></th>

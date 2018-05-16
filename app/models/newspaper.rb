@@ -25,9 +25,6 @@ class Newspaper < ApplicationRecord
     end
   end
 
-  has_attached_file :image, styles: { medium: "300x300#", thumb: "100x100#", small: "70x70#" }
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
-
   def self.search(search)
     if search
       self.where('title ILIKE ? OR content ILIKE ?', "%#{search}%", "%#{search}%")
@@ -36,7 +33,4 @@ class Newspaper < ApplicationRecord
     end
   end
 
-  def avatar_url_newspaper
-    Faker::Avatar.image
-  end
 end

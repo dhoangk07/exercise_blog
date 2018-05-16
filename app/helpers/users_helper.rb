@@ -12,10 +12,10 @@ module UsersHelper
   end
 
   def comment_count(user)
-    Comment.all.where(user_id: user.id).count
+    Comment.where(user_id: user.id).count
   end
 
   def newspaper_count(user)
-    Newspaper.all.where(user_id: user.id).count
+    Newspaper.where(user_id: user.id).count
   end
 end

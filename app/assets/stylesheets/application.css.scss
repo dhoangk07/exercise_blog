@@ -150,7 +150,7 @@ img.rounded-circle {
   width: 870px;
 }
 .card-img-top{    
-  width: 700px;
+  width: 681px;
   height: 400px;
 }
 
@@ -165,4 +165,11 @@ img.rounded-circle {
 
 .active-navigation {
   background-color: blue;
+}
+
+.footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding-top: 20px
 }
