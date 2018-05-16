@@ -15,16 +15,15 @@
         <p class="card-text"><%= @newspaper.content %></p>
       </div>
      
-    <div class="card-body">
-      <%= render "comments/form" %>
-      <%= render "comments/comment" %> 
-    </div>
+      <div class="card-body">
+        <%= render "comments/form" %>
+        <%= render "comments/comment" %> 
+      </div>
 
       <div class="card-footer text-muted">
         Posted on <%= time_ago_in_words(@newspaper.created_at)%> by
         <a href="#"><%= @newspaper.user.first_name.capitalize %> <%= @newspaper.user.last_name.capitalize %></a>
       </div>
-
     </div>
   
   </div>
