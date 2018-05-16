@@ -50,18 +50,16 @@
       </div>
     </div>
 
-    <% if ((params[:controller] === "newspapers") && (params[:action] === "edit")) %>
-      <div class='form-group'>
-        <div class="row">
-          <div class='col-md-2 content'>
-            <a class="title"><%= f.label :image %></a>s
-          </div>
-          <div class='col-md-9'>
-            <%= f.text_field :image, rows: 15, class:'form-control', placeholder: "Insert Image", autofocus: true %>
-          </div>
+    <div class='form-group'>
+      <div class="row">
+        <div class='col-md-2 content'>
+          <a class="title"><%= f.label :image %></a>s
+        </div>
+        <div class='col-md-9'>
+          <%= f.file_field :image, class:'form-control', placeholder: "Insert Image", autofocus: true %>
         </div>
       </div>
-    <% end %>
+    </div>
 
     <div class='form-group'>
       <div class="row">
