@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     end
 
     resources :users
+
+    get "nil", to: 'newspapers#nil', :as => :nil
   
     get 'tags/:tag', to: 'newspapers#index', as: :tag, :constraints  => { :tag => /[^\/]+/ }
 
