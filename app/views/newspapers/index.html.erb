@@ -3,8 +3,8 @@
   <!-- Blog Entries Column -->
   <div class="col-md-7">
 
-    <h1 class="my-4">Page Heading
-      <small>Secondary Text</small> 
+    <h1 class="my-4">Hoang Blog
+      <small>Newspaper</small> 
       <small>
        <li class="nav-item dropdown" style="list-style-type:none">
           <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -25,7 +25,7 @@
       <!-- Blog Post -->
       <div class="card mb-4">
           <%= image_tag newspaper.avatar_url_newspaper, class: "Card image cap" %>
-        <div class="card-body">
+        <div class="img-fluid card-body">
           
           <h2 class="card-title"><%= link_to newspaper.title, newspaper_path(newspaper) %></h2>
           <p class="card-text"><%= truncate newspaper.content, length: 200 %></p>
