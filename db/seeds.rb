@@ -18,11 +18,9 @@
   last_name  = Faker::Name.last_name
   email = Faker::Internet.email
   password = "1234567"
-  # image = Faker::Avatar.image(slug = nil, size = '300x300', format = 'png')
   User.create!(first_name:  first_name,
                last_name: last_name,
                email: email,
-               # image: image,
                password: password,
                password_confirmation: password)
 end
