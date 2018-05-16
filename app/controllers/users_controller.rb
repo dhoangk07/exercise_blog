@@ -14,13 +14,13 @@ class UsersController < ApplicationController
       @users = User.order("last_name ASC").paginate(:page => params[:page], :per_page => 5)
     elsif params[:order] == "first_name" 
       @users = User.order("first_name ASC").paginate(:page => params[:page], :per_page => 5)
-      @first_name_order_direction = params[:direction]
+      # @first_name_order_direction = params[:direction]
     
     else
       @users = User.order('first_name ASC').paginate(:page => params[:page], :per_page => 5)
     end
 
-    @users = User.order("#{params[:order]} ASC")
+    # @users = User.order("#{params[:order]} ASC")
 
     if params[:search].present?
       @users = @users.search(params[:search])
