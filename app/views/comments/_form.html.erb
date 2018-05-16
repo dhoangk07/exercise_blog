@@ -2,7 +2,9 @@
 <div class="row">
   <div>
     <p>
-      <%= form.hidden_field :user_id, :value => current_user.id %>
+      <% if current_user.present? %>
+        <%= form.hidden_field :user_id, :value => current_user.id %>
+      <% end %>
     </p>
     <p>
       <%= form.label :commenter %><br>
