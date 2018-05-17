@@ -14,7 +14,7 @@
         <p class="card-text"><%= @newspaper.content %></p>
       </div>
      
-      <% if @newspaper.user.last_name ==current_user.last_name %>
+      <% if current_user && @newspaper.user.last_name == current_user.last_name %>
         <div class="card-body">
           <%= render "comments/form" %>
           <%= render "comments/comment" %> 
