@@ -54,11 +54,9 @@
           <div class="col-lg-6">
             <ul class="list-unstyled mb-0">
               <li>
-                  <<a href="#"><%= raw newspaper.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></a></a>
+                  <a href="#"><%= raw @newspaper.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></a></a>
                   <%= tag.name %>
-                <% end %>
               </li>
-          
             </ul>
           </div>
         </div>
