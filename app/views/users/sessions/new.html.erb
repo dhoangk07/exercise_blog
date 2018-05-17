@@ -2,13 +2,13 @@
 <%= form_for(resource, as: resource_name, html: {class: "form-horizontal center", role:"form"}, url: session_path(resource_name)) do |f| %>
 <div class="container">
   <div class='form-group'>
-    <div class='col-md-12'>
+    <div class='col-md-12 col-9'>
       <%= f.email_field :email, class:'form-control', autofocus: true, autocomplete: "email", placeholder: "Enter your email", autofocus: true %>
     </div>
   </div>
 
   <div class='form-group'>
-    <div class='col-md-12'>
+    <div class='col-md-12 col-9'>
       <%= f.password_field :password, class:'form-control', autocomple: "off", placeholder: "Enter your password" %>
     </div>
   </div>
@@ -23,7 +23,7 @@
   <% end %>
 
   <div class='form-group'>
-    <div class='col-md-12'>
+    <div class='col-md-12 col-9'>
       <%= f.submit "Sign In", class: 'btn btn-success btn-lg btn-block' %>
     </div>
   </div>

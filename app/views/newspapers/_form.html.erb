@@ -1,3 +1,4 @@
+<% if @newspaper.present? %>
 <%= form_for(@newspaper, html: {class: "form-horizontal"}) do |f| %>
   <div class="container">
     <div class="row">
@@ -55,6 +56,7 @@
         <div class='col-md-2 content'>
           <a class="title"><%= f.label :image %></a>s
         </div>
+
         <div class='col-md-9'>
           <%= f.file_field :image, class:'form-control', placeholder: "Insert Image", autofocus: true %>
         </div>
@@ -79,3 +81,4 @@
 <div class="col-xs-4 col-xs-offset-4 edit" align="center">
   [ <%= link_to "Cancel to request and return to newspapers listing", newspapers_path %> ]
 </div>
+<% end %>
