@@ -1,5 +1,11 @@
 <% if ((params[:controller] === "newspapers") && (params[:action] === "index")) %>
   <footer class="py-5 bg-dark footer">
+<% elsif %>
+  <% ((params[:controller] === "newspapers") && (params[:action] === "new")) %>
+  <footer class="py-5 bg-dark footer">
+<% elsif %>
+  <% ((params[:controller] === "newspapers") && (params[:action] === "edit")) %>
+  <footer class="py-5 bg-dark footer">
 <% else %>
   <footer class="py-5 bg-dark footer fixed-bottom">
 <% end %>
