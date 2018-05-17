@@ -2,6 +2,7 @@ class NewspapersController < ApplicationController
   before_action :set_newspaper ,only: [:edit, :update, :show, :destroy]
   before_action :authorize, except: [:show, :index, :nil]
   def index
+    @newspaper = Newspaper.new
     @tags = Tag.all
     @taggings = Tagging.all
     @newspapers = if params[:tag]
