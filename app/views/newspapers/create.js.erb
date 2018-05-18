@@ -3,9 +3,10 @@
   $('.close').click();
   $('#title-newspaper').val('');
   $('#content-newspaper').val('');
+  $('#newspaper_tag_list').val('');
 <% else %>
   $('#error-message').prepend("<%= j(render 'newspapers/message_validate', newspaper: @newspaper) %>");
-  $('#error-message').fadeOut( 3000 );
+  $('#error-message').fadeOut( 4000 );
   // $('#error-message-validate').remove();
 <% end %>
 
