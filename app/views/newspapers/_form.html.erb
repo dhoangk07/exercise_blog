@@ -1,0 +1,60 @@
+<% if @newspaper.present? %>
+  <%= form_for(@newspaper, html: {class: "form-horizontal"}) do |f| %>
+    <div class="container">
+      <%= render "newspapers/message_validate" %>
+      <div class="form-group">
+        <div class="row">
+          <div class=' col-md-2'>
+            <a class="title-modal form-control form-control"><%= f.label :title %></a>
+          </div>
+          <div class='col-md-7'>
+            <%= f.text_field :title, class:'form-control', id: "title-newspaper", placeholder: "Title of newspaper", autofocus: true %>
+          </div>
+        </div>
+      </div>
+
+      <div class='form-group'>
+        <div class="row">
+          <div class='col-md-2 content'>
+            <a class="title-modal form-control"><%= f.label :content %></a>
+          </div>
+          <div class='col-md-7'>
+            <%= f.text_area :content, rows: 15, class:'form-control', id: "content-newspaper", placeholder: "Content of newspaper", autofocus: true %>
+          </div>
+        </div>
+      </div>
+
+      <div class='form-group'>
+        <div class="row">
+          <div class='col-md-2 content'>
+            <a class="title-modal form-control"><%= f.label :tag_list%></a>
+          </div>
+          <div class='col-md-7'>
+            <%= f.text_field :tag_list, rows: 15, class:'form-control', placeholder: "Body of tag", autofocus: true %>
+          </div>
+        </div>
+      </div>
+
+      <div class='form-group'>
+        <div class="row">
+          <div class='col-md-2 content'>
+            <a class="title-modal form-control"><%= f.label :image %></a>
+          </div>
+
+          <div class='col-md-7'>
+            <%= f.file_field :image, autofocus: true %>
+          </div>
+        </div>
+      </div>
+
+      <div class='form-group'>
+        <div class="row">
+          <div class='col-md-2'></div>
+            <div class='col-md-7'>
+                <%= f.submit "Edit Newspaper", class: 'btn btn-success btn-lg btn-block' %>
+            </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
