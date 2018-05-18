@@ -6,18 +6,18 @@ RSpec.describe "sign in page", :type => :request, js: true do
     password= '1234567'
     user = User.create(email: email, 
       password: password, 
-      first_name: Faker::Name.first_name, 
-      last_name:Faker::Name.last_name)
+      first_name: "Hoang",
+      last_name: "Dinh")
 
     visit "/"
     click_link "Sign In"
-sleep 30
     fill_in "user_email", with: email
     fill_in "user_password", with: password
     click_button "Sign In"
 
     expect(page).to have_content("Signed in successfully.")
     expect(page).to have_content("Log Out")
+    expect(page).not_to have_content("Hoang Dinh")
     expect(page).not_to have_content("Sign In")
     expect(page).not_to have_content("Admin")
   end
