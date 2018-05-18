@@ -6,7 +6,6 @@
     <h1 class="my-4">Hoang Blog
       <small>Newspaper</small> 
       <%= render 'newspapers/modal' %>
-      <%= link_to " New", new_newspaper_path %> 
       <small>
        <li class="nav-item dropdown" style="list-style-type:none">
           <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -38,7 +37,7 @@
             </label>
           </div>
           <%= link_to "Read More", newspaper_path(newspaper), class: "btn btn-primary"%> 
-          <% if newspaper.user == current_user %>
+          <% if newspaper.user == current_user && current_user.role == 'admin' %>
           <%= link_to "Edit", edit_newspaper_path(newspaper), class: "btn btn-primary" %> 
           <%= link_to "Destroy", newspaper_path(newspaper),
           method: :delete,
