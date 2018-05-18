@@ -1,0 +1,13 @@
+<% if !@newspaper.errors.any? %>
+  $('#body-of-newspaper-<%=(@newspaper.id)-1%>').prepend("<%= j(render 'action', newspaper: @newspaper) %>");
+  $('.close').click();
+  $('#title-newspaper').val('');
+  $('#content-newspaper').val('');
+<% else %>
+  $('#error-message').prepend("<%= j(render 'newspapers/message_validate', newspaper: @newspaper) %>");
+  $('#error-message').fadeOut( 3000 );
+  // $('#error-message-validate').remove();
+<% end %>
+
+
+

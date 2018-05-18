@@ -1,0 +1,30 @@
+<div class="card mb-4" id="body-of-newspaper-<%=newspaper.id%>">
+  <%= image_tag newspaper.avatar_url_newspaper, class: "Card image cap" %>
+  <div class="img-fluid card-body">
+    <h2 class="card-title"><%= link_to newspaper.title, newspaper_path(newspaper) %></h2>
+    <p class="card-text"><%= truncate newspaper.content, length: 200 %></p>
+
+    <!-- Button trigger modal -->
+
+    <div class="btn-group-toggle" data-toggle="buttons">
+      <label >
+        <i class="fa fa-tags btn btn-secondary tag-list">Tags</i>
+        <%= raw newspaper.tags.map(&:name).map { |t| link_to t, tag_path(t), class: "btn btn-light tag-list"}.join(', ') %>
+      </label>
+    </div>
+    <%= link_to "Read More", newspaper_path(newspaper), class: "btn btn-primary"%> 
+    <% if newspaper.user == current_user && current_user.role == 'admin' %>
+      <%= link_to "Edit", edit_newspaper_path(newspaper), class: "btn btn-primary" %> 
+      <%= link_to "Destroy", newspaper_path(newspaper),
+                   method: :delete,
+                     data: { confirm: "Are you sure? "}, class: "btn btn-primary" %> 
+    <% end %>
+
+    <!-- Modal -->
+  </div>
+
+  <div class="card-footer text-muted">
+    Posted on <%= time_ago_in_words(newspaper.created_at)%> by
+    <%= link_to writer_full_name(newspaper), newspapers_path(filter: newspaper.user.id)%> 
+  </div>
+</div>

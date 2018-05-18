@@ -40,9 +40,15 @@ class NewspapersController < ApplicationController
     @newspaper = current_user.newspapers.create(newspaper_params)
     if @newspaper.save
       flash[:success] =  "Newspaper already created successful"
-      redirect_to @newspaper
+      respond_to do |format|
+        format.html { redirect_to @newspaper }
+        format.js
+      end
     else
-      render "new"
+      respond_to do |format|
+        format.html { render "new" }
+        format.js
+      end
     end
   end 
 
