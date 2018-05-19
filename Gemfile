@@ -52,6 +52,8 @@ gem "paperclip"
 
 gem 'font-awesome-sass', '~> 5.0.9'
 
+gem 'rails_admin', '~> 1.3'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -76,6 +78,7 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15', '< 4.0'
   gem 'selenium-webdriver'
+  # gem 'capybara-webkit'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
   gem 'rspec-rails'

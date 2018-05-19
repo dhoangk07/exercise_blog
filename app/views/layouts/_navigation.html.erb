@@ -18,12 +18,9 @@
       <ul class="navbar-nav ml-auto">
         <% if admin_only %>
           <li class="nav-item">
-            <a><%= link_to "Admin", users_path(filter: "admin"), class: "nav-link #{active_class("users", "index")}" %> </a>
+            <a><%= link_to "Admin", rails_admin_path, class: "nav-link " %> </a>
           </li>
           
-          <li class="nav-item">
-            <a><%= link_to "Users", users_path(filter: "user"), class: "nav-link #{active_class("users", "index")}" %> </a>
-          </li>
         <% end %>
         
         <% if user_signed_in? %>
