@@ -1,0 +1,10 @@
+<li class="nav-item dropdown" style="list-style-type:none">
+  <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <i class="fa fa-sort"></i>
+  </a>
+  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <%= link_to "Date created(oldest)", newspapers_path(order: "oldest"), class: "dropdown-item" %> 
+    <%= link_to "Date created(newest)", newspapers_path(order: "newest"), class: "dropdown-item" %> 
+    <%= link_to "Alphabet", newspapers_path(order: "alphabet"), class: "dropdown-item" %> 
+  </div>
+</li>
