@@ -14,4 +14,8 @@ module ApplicationHelper
       ''
     end
   end
+
+  def fixed_footer?
+    ["devise/sessions", "registrations", "welcome", "newspapers" ].include?(controller_name) && ["new", "index", "show" ].include?(action_name)
+  end
 end
