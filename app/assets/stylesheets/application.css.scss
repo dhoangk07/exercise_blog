@@ -19,7 +19,7 @@ body {
 }
 
 .my-4-title{
-  padding-top: 70px;
+  padding-top: 100px;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -195,3 +195,16 @@ footer.py-5.bg-dark.footer {
   padding-top: 5px;
   border-style: none;
 }
+
+.dropdown-toggle::after {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: none;
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+  }
