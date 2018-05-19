@@ -35,4 +35,8 @@ VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   def avatar_url_user
     Faker::Avatar.image
   end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end
