@@ -2,28 +2,19 @@
 
   <!-- Blog Entries Column -->
   <div class="col-md-7" >
-
-    <h1 class="my-4-title">Hoang Blog
+    <div class="col-md-1 float-right">
+      <%= render 'newspapers/icon_sort' %>
+    </div>
+    <h1 class="my-4-title" id="blog-title">Hoang Blog
       <small>Newspaper</small> 
-      <%= render 'newspapers/modal' %>
-      <small>
-        <li class="nav-item dropdown" style="list-style-type:none">
-          <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-sort-amount-down"></i> SORT BY
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to "Date created(oldest)", newspapers_path(order: "oldest"), class: "dropdown-item" %> 
-            <%= link_to "Date created(newest)", newspapers_path(order: "newest"), class: "dropdown-item" %> 
-            <%= link_to "Alphabet", newspapers_path(order: "alphabet"), class: "dropdown-item" %> 
-          </div>
-        </li>
-      </small>
+      <span>
+        <%= render 'newspapers/modal' %>
+      </span> 
     </h1>
     <% @newspapers.each do |newspaper| %>
       <!-- Blog Post -->
       <%= render 'newspapers/action', newspaper: newspaper %>
     <% end %>
-
     <!-- Pagination -->
     <div class="row pagination" align="center">
       <%= will_paginate @newspapers, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
