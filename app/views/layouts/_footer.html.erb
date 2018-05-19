@@ -1,12 +1,5 @@
-<% if ((params[:controller] === "devise/sessions") && (params[:action] === "new")) %>
+<% if fixed_footer? %>
   <footer class="py-5 bg-dark footer fixed-bottom">
-<% elsif ((params[:controller] === "registrations") && (params[:action] === "new")) %>
-  <footer class="py-5 bg-dark footer fixed-bottom">
-<% elsif ((params[:controller] === "welcome") && (params[:action] === "index")) %>
-  <footer class="py-5 bg-dark footer fixed-bottom">
-<% elsif ((params[:controller] === "newspapers") && (params[:action] === "show")) %>
-  <footer class="py-5 bg-dark footer fixed-bottom">
-
 <% else %>
   <footer class="py-5 bg-dark footer ">
     <div class="container">
