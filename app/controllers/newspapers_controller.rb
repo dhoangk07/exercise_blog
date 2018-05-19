@@ -16,6 +16,8 @@ class NewspapersController < ApplicationController
       else
         redirect_to nil_path
       end
+    elsif params[:current_user].present?
+      @newspapers = current_user.newspapers
     elsif params[:order] == "oldest"
       @newspaper = Newspaper.order("created_at DESC").paginate(:page => params[:page], :per_page => 3)
     elsif params[:order] == "newest"
@@ -30,6 +32,7 @@ class NewspapersController < ApplicationController
     if params[:search].present?
       @newspapers = @newspapers.search(params[:search])
     end
+
   end
 
   def new
@@ -53,11 +56,12 @@ class NewspapersController < ApplicationController
   end 
 
   def edit
+    session[:back_url] = request.referrer
   end
 
   def update
-
     if @newspaper.update(newspaper_params)
+      redirect_path = session.delete(:back_url) || newspapers_path
       redirect_to newspaper_path(@newspaper)
       flash[:success] =  "Newspaper already updated successful"
     else 
@@ -66,7 +70,6 @@ class NewspapersController < ApplicationController
   end
 
   def show
-      @tags = Tag.all
   end
 
   def destroy
