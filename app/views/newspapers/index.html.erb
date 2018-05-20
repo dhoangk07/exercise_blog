@@ -2,13 +2,14 @@
 
   <!-- Blog Entries Column -->
   <div class="col-md-7" >
-    <div class="col-md-1 float-right">
-      <%= render 'newspapers/icon_sort' %>
-    </div>
+    
     <h1 class="my-4-title" id="blog-title">Hoang Blog
       <small>Newspaper</small> 
-      <span>
-        <%= render 'newspapers/modal' %>
+      <span class="col-md-2 float-right ">
+        <span class="row">
+          <%= render 'newspapers/modal' %>
+          <%= render 'newspapers/icon_sort' %>
+        </span>
       </span> 
     </h1>
     <% @newspapers.each do |newspaper| %>

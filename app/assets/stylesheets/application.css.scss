@@ -19,7 +19,7 @@ body {
 }
 
 .my-4-title{
-  padding-top: 100px;
+  padding-top: 20px;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -208,3 +208,18 @@ footer.py-5.bg-dark.footer {
     border-bottom: 0;
     border-left: 0.3em solid transparent;
   }
+
+.icon-sort{
+  font-size: 17px;
+  padding-top: 8px;
+  color: white !important;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  background-color: #007bff;
+}
+
+
+input#search {
+   width: 260px; 
+    
+}
