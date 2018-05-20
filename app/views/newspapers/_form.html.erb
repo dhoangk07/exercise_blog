@@ -1,4 +1,5 @@
 <% if @newspaper.present? %>
+  <%= tinymce %>
   <%= form_for(@newspaper, html: {class: "form-horizontal"}) do |f| %>
     <div class="container">
       <%= render "newspapers/message_validate" %>
@@ -8,7 +9,7 @@
             <a class="title-modal form-control form-control"><%= f.label :title %></a>
           </div>
           <div class='col-md-7'>
-            <%= f.text_field :title, class:'form-control', id: "title-newspaper", placeholder: "Title of newspaper", autofocus: true %>
+            <%= f.text_field :title, class: 'form-control', id: "title-newspaper", placeholder: "Title of newspaper", autofocus: true %>
           </div>
         </div>
       </div>
@@ -19,7 +20,7 @@
             <a class="title-modal form-control"><%= f.label :content %></a>
           </div>
           <div class='col-md-7'>
-            <%= f.text_area :content, rows: 15, class:'form-control', id: "content-newspaper", placeholder: "Content of newspaper", autofocus: true %>
+            <%= f.text_area :content, rows: 15, class: 'form-control tinymce', id: "content-newspaper", placeholder: "Content of newspaper", autofocus: true %>
           </div>
         </div>
       </div>
@@ -30,7 +31,7 @@
             <a class="title-modal form-control"><%= f.label :tag_list%></a>
           </div>
           <div class='col-md-7'>
-            <%= f.text_field :tag_list, rows: 15, class:'form-control', placeholder: "Body of tag", autofocus: true %>
+            <%= f.text_field :tag_list, rows: 15, class: 'form-control', placeholder: "Body of tag", autofocus: true %>
           </div>
         </div>
       </div>
