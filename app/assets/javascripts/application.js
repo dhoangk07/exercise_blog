@@ -17,6 +17,7 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require tinymce-jquery
 
 $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus')

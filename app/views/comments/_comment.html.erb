@@ -1,3 +1,5 @@
+<%= tinymce_assets %>
+<%= tinymce %>
 <% @newspaper.comments.order("created_at DESC").each do |comment| %>
   <%if comment.user.present?%>
     <div class="row">
