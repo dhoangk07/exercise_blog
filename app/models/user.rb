@@ -60,7 +60,13 @@ VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   end
 
   def full_name
+    if first_name && last_name
     "#{first_name} #{last_name}"
+    elsif name
+      name
+    else
+      email
+    end
   end
 
   def from_facebook?
