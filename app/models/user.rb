@@ -27,9 +27,9 @@ end
 
 VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  validates :first_name, presence: true
+  validates :first_name, presence: true, unless: -> { from_facebook? }
 
-  validates :last_name, presence: true
+  validates :last_name, presence: true, unless: -> { from_facebook? }
 
   validates  :email,     :presence   => true,
             :format                 => { with: VALID_EMAIL_REGEX },
@@ -62,4 +62,9 @@ VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def from_facebook?
+    provider == 'facebook'
+  end
+
 end
