@@ -61,7 +61,6 @@ class NewspapersController < ApplicationController
 
   def update
     if @newspaper.update(newspaper_params)
-      redirect_path = session.delete(:back_url) || newspapers_path
       redirect_to newspaper_path(@newspaper)
       flash[:success] =  "Newspaper already updated successful"
     else 
@@ -73,8 +72,10 @@ class NewspapersController < ApplicationController
   end
 
   def destroy
+    session[:back_url] = request.referrer
     if @newspaper.destroy
-      redirect_to newspapers_path
+      redirect_path = session.delete(:back_url) || newspapers_path
+      redirect_to redirect_path 
       flash[:danger] = "Newspaper already destroy successful"
     end
   end
