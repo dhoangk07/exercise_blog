@@ -1,6 +1,10 @@
 <li class="nav-item dropdown" style="list-style-type:none">
-  <a class="nav-link dropdown-toggle icon-sort" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+<button type="button" class="btn btn-primary navbar-brand" data-toggle="modal" data-target="#exampleModal">
   <i class="fa fa-sort"></i>
+</button>
+  
   </a>
   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
     <%= link_to "Date created(oldest)", newspapers_path(order: "oldest"), class: "dropdown-item" %> 
