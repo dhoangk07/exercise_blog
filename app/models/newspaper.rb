@@ -4,8 +4,8 @@ class Newspaper < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
 
-  has_many :taggings, dependent: :destroy
-  has_many :tags, through: :taggings, dependent: :destroy
+  has_many :taggings
+  has_many :tags, through: :taggings
 
   def self.tagged_with(name)
     Tag.find_by!(name: name).newspapers
@@ -35,6 +35,7 @@ class Newspaper < ApplicationRecord
       self
     end
   end
+
   def avatar_url_newspaper
     Faker::Avatar.image
   end
