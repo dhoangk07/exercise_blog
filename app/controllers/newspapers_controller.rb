@@ -29,14 +29,6 @@ class NewspapersController < ApplicationController
     else
       @newspapers = Newspaper.order('created_at DESC').paginate(:page => params[:page], :per_page => 3)
     end
-    if params[:search].present?
-      @newspapers = @newspapers.search(params[:search])
-      respond_to do |format|
-        format.html { redirect_to @newspaper }
-        format.js
-      end
-    end
-
   end
 
   def new
@@ -85,7 +77,15 @@ class NewspapersController < ApplicationController
   end
 
   def nil
+  end
 
+  def search
+        debugger
+    @results = @newspapers.search(params[:search])
+    respond_to do |format|
+      format.html { redirect_to @newspaper }
+      format.js
+    end
   end
 
   def set_newspaper

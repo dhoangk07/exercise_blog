@@ -2,11 +2,12 @@
   <h5 class="card-header">Search</h5>
   <div class="card-body">
     <div class="input-group">
-      <%= form_tag newspapers_path, :class =>"form-inline ", :method => 'get', remote: true do %>
-      <%= text_field_tag :search, params[:search], :class =>"form-control", id: "search-form"%>
-      <span class="input-group-btn ml-2">
-        <%= submit_tag "Go!", :class => "btn btn-secondary my-2 my-sm-0" %>
-      </span>
+      <%= form_tag("/newspapers/search", class: "form-inline ", method: 'get', remote: true) do %>
+        <%= text_field_tag :search, params[:search], :class =>"form-control", id: "search-form"%>
+        <span class="input-group-btn ml-2">
+          <%= submit_tag "Go!", :class => "btn btn-secondary my-2 my-sm-0" %>
+        </span>
+        <div id="results"></div> 
       <% end %>
     </div>
   </div>

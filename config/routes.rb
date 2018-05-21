@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
     resources :users
 
+    get "search", to: 'newspapers#search', :as => :search
+
     get "nil", to: 'newspapers#nil', :as => :nil
   
     get 'tags/:tag', to: 'newspapers#index', as: :tag, :constraints  => { :tag => /[^\/]+/ }

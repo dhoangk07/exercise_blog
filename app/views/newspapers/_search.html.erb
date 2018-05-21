@@ -1,0 +1,23 @@
+<div class="row">
+
+  <!-- Blog Entries Column -->
+  <div class="col-md-7" >
+    
+    <h1 class="my-4-title" id="blog-title">Hoang Blog
+      <small>Newspaper</small> 
+      <span class="col-md-2 float-right ">
+        <span class="row">
+          <%= render 'newspapers/modal' %>
+          <%= render 'newspapers/icon_sort' %>
+        </span>
+      </span> 
+    </h1>
+    <% @results.each do |newspaper| %>
+      <!-- Blog Post -->
+      <%= render 'newspapers/action', newspaper: newspaper %>
+    <% end %>
+    <!-- Pagination -->
+    <div class="row pagination" align="center">
+      <%= will_paginate @newspapers, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+    </div>
+  </div>
