@@ -31,6 +31,10 @@ class NewspapersController < ApplicationController
     end
     if params[:search].present?
       @newspapers = @newspapers.search(params[:search])
+      respond_to do |format|
+        format.html { redirect_to @newspaper }
+        format.js
+      end
     end
 
   end
