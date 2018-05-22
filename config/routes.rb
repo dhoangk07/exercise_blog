@@ -6,11 +6,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
     resources :newspapers do
       resources :comments
+      get :search, on: :collection
     end
 
     resources :users
-
-    get "search", to: 'newspapers#search', :as => :search
 
     get "nil", to: 'newspapers#nil', :as => :nil
   

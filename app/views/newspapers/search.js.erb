@@ -1,1 +1,1 @@
-$("#blog-title").after("<%=j (render "search", newspaper: @newspaper) %>");
+$('.searching').html("<%= j render 'search', newspapers: @newspapers %>")

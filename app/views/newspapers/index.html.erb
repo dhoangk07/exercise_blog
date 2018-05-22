@@ -7,19 +7,15 @@
       <small>Newspaper</small> 
       <span class="col-md-2 float-right ">
         <span class="row">
-          <%= render 'newspapers/modal' %>
-          <%= render 'newspapers/icon_sort' %>
+          <%= render 'modal' %>
+          <%= render 'icon_sort' %>
         </span>
       </span> 
     </h1>
-    <% @newspapers.each do |newspaper| %>
-      <!-- Blog Post -->
-      <%= render 'newspapers/action', newspaper: newspaper %>
-    <% end %>
-    <!-- Pagination -->
-    <div class="row pagination" align="center">
-      <%= will_paginate @newspapers, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+    <div class="searching">
+      <%= render 'search', newspapers: @newspapers %>
     </div>
+    <!-- Pagination -->
   </div>
 
   <!-- Sidebar Widgets Column -->
