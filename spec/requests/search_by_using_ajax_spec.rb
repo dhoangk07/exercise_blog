@@ -48,12 +48,5 @@ RSpec.describe "Search form", :type => :request, js: true do
       expect(page).not_to have_content("Laos")
     end
   end
-
-  context "When input title and contenton search form" do
-    it "has a 200 status code" do
-      xhr :get, :search, note: { title: "VietNam", content: "b" }
-      response.code.should == "200"
-    end
-  end
 end
 
