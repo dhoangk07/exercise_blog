@@ -83,7 +83,7 @@ class NewspapersController < ApplicationController
     @newspapers = Newspaper.search(params[:search]).paginate(:page => params[:page], :per_page => 3)
     respond_to do |format|
       format.js
-      # format.html { redirect_to @newspaper }
+      format.html { redirect_to @newspaper }
     end
   end
 
