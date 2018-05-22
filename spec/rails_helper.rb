@@ -59,16 +59,10 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include Capybara::DSL
 
-  Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
-end
-
-Capybara.javascript_driver = :chrome
-
-  config.before(:each, type: :request) do
-    # Note (Mike Coutermarsh): Make browser huge so that no content is hidden during tests
-    Capybara.current_session.driver.browser.manage.window.resize_to(2_500, 2_500)
-  end
+  # config.before(:each, type: :request) do
+  #   # Note (Mike Coutermarsh): Make browser huge so that no content is hidden during tests
+  #   Capybara.current_session.driver.browser.manage.window.resize_to(2_500, 2_500)
+  # end
 end
 
 
