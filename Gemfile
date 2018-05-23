@@ -52,7 +52,7 @@ gem "paperclip"
 
 gem 'font-awesome-sass', '~> 5.0.9'
 
-gem 'rails_admin', '~> 1.3'
+# gem 'rails_admin', '~> 1.3'
 
 gem 'omniauth-facebook', '~> 5.0.0'
 
