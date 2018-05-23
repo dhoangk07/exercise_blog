@@ -13,6 +13,9 @@
 #              activated: true,
 #              activated_at: Time.zone.now)
 
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+
+
 99.times do |n|
   first_name  = Faker::Name.first_name
   last_name  = Faker::Name.last_name
@@ -63,4 +66,3 @@ end
 # followers = users[3..40]
 # following.each { |followed| user.follow(followed) }
 # followers.each { |follower| follower.follow(user) }
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
