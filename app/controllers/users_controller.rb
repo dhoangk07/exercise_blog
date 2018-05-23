@@ -22,8 +22,9 @@ class UsersController < ApplicationController
 
     # @users = User.order("#{params[:order]} ASC")
 
+    # @users.order("#{params[:order]} #{order_direction}")
     if params[:search].present?
-      @users = @users.search(params[:search])
+      @users = User.search(params[:search]).paginate(:page => params[:page], :per_page => 5)
     end
   end
 
@@ -52,12 +53,26 @@ class UsersController < ApplicationController
     end
   end
 
-  def set_user
-    @user = User.find(params[:id])
-  end
+  # def search
+  #   @users = User.search(params[:search]).paginate(:page => params[:page], :per_page => 5)
+  #   respond_to do |format|
+  #     format.js
+  #     format.html { redirect_to @user }
+  #   end
+  # end
+
 
   private
-  def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :image)
-  end
+
+    # def order_direction
+    #   params[:direction].present? ? params[:direction] : "DESC"
+    # end
+
+    def set_user
+      @user = User.find(params[:id])
+    end
+
+    def user_params
+      params.require(:user).permit(:first_name, :last_name, :email, :image)
+    end
 end

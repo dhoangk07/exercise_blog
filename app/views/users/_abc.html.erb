@@ -1,0 +1,27 @@
+<% users.each_with_index do |user,index| %>
+  <tr class="tr-usertable clickable-to-user" data-target="<%= user_path(user) %>">
+    <td><%= params[:page].present? ? index+5*(params[:page].to_i-1) : (index+1) %></td>
+    <td><%= user.first_name.capitalize %></td>
+    <td><%= user.last_name.capitalize %></td>
+    <td><%= user.email %><br/>
+    </td>
+    <td class="avatar"> <%= image_tag user.avatar_url_user, class: "rounded-circle" %> <br/>
+    <% if user.role == "admin" %>
+      <td><%= "Admin" %> </td>
+      <td><%= user.sign_in_count %></td>
+      <td><%= newspaper_count(user) %></td>
+      <td><%= comment_count(user)%></td>
+      </td>
+        <td> <%= render "users/action", user: user %></td>
+    <% else %>
+      <td><%= user.role.capitalize %></td>
+      <td><%= user.sign_in_count %></td>
+      <td><%= comment_count(user) %></td>
+      <td><% if comment_count(user) == 0 %>
+        <%= "0" %>
+        <% end %>
+      </td>
+        <td> <%= render "users/action", user: user %></td>
+    <% end %>
+  </tr>
+<% end %>

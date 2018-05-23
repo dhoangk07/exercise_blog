@@ -9,7 +9,9 @@ Rails.application.routes.draw do
       get :search, on: :collection
     end
 
-    resources :users
+    resources :users do
+      get :search, on: :collection
+    end
 
     get "nil", to: 'newspapers#nil', :as => :nil
   

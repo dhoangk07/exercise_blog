@@ -72,4 +72,12 @@ VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   def from_facebook?
     provider == 'facebook'
   end
+
+  def self.search(search)
+    if search
+      self.where('last_name ILIKE ? OR first_name ILIKE ?', "%#{search}%", "%#{search}%")
+    else
+      self
+    end
+  end
 end

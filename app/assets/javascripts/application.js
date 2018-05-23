@@ -22,3 +22,10 @@
 $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus')
 })
+
+$(function() {
+  $("#user_search input").keyup(function(){
+    $.get($("#user_search").attr("action"), $("#user_search").serialize(), null, "script");
+    return false;
+  }); 
+});
