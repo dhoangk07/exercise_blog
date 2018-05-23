@@ -44,7 +44,7 @@ gem 'jquery-rails'
 
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
-gem 'will_paginate', '>= 3.1'
+gem 'will_paginate', '>= 3.1.6'
 
 gem 'will_paginate-bootstrap4'
 
