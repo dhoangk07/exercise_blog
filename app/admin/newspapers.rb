@@ -1,5 +1,4 @@
 ActiveAdmin.register Newspaper do
-
 # actions :all, :except => [:owner_id, :Role]
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -14,23 +13,18 @@ ActiveAdmin.register Newspaper do
 #   permitted
 # end
   index do
-
-    column :id 
-    column :title
-    column :content
-    column :user
-    column :role
-    column :created_at
-    column :updated_at
-    actions
+  column :id 
+  column :title
+  column :content
+  column :user
+  column :created_at
+  column :updated_at
+  actions
   end
-
-  
   filter :id 
   filter :title
   filter :content
   filter :user
-  filter :role
   filter :created_at
   filter :updated_at
 end
