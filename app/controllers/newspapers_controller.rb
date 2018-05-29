@@ -87,9 +87,7 @@ class NewspapersController < ApplicationController
     end
   end
 
-  def set_newspaper
-    @newspaper = Newspaper.find(params[:id])
-  end
+  
 
   def vote
     if !current_user.liked? @newspaper
@@ -99,8 +97,21 @@ class NewspapersController < ApplicationController
     end
   end
 
-  private
-  def newspaper_params
-    params.require(:newspaper).permit(:title, :content, :search, :tag_list, :image)
+  def hide
+    @newspaper = Newspaper.find(params[:id])
+    @hide = @newspaper.hides.create(user_id: current_user.id)
+    respond_to do |format|
+      format.js
+    end
   end
+
+
+  private
+    def set_newspaper
+      @newspaper = Newspaper.find(params[:id])
+    end
+    
+    def newspaper_params
+      params.require(:newspaper).permit(:title, :content, :search, :tag_list, :image)
+    end
 end

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :newspapers do
       resources :comments
       get :search, on: :collection
+      get :hide, on: :member
     end
 
     resources :users do

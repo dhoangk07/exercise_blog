@@ -1,7 +1,7 @@
-<div id="action-group">
+<div id="action-group" class="newspaper-wrapper">
   <div class="card mb-4" id="body-of-newspaper">
     <%= image_tag newspaper.avatar_url_newspaper, class: "Card image cap" %>
-    <div class="img-fluid card-body">
+    <div class="img-fluid card-body ">
       <h2 class="card-title"><%= link_to newspaper.title, newspaper_path(newspaper) %></h2>
       <p class="card-text"><%= truncate newspaper.content, length: 200 %></p>
 
@@ -28,9 +28,9 @@
         <%= link_to "Destroy", newspaper_path(newspaper),
                      method: :delete,
                        data: { confirm: "Are you sure? "}, class: "btn btn-primary" %> 
-      <% end %>
       
-
+      <button class="btn btn-xs btn-default btn-primary hide-btn" type="button" id="hide-<%=newspaper.id%>">Hide</button>
+      <% end %>
       <!-- Modal -->
     </div>
 
