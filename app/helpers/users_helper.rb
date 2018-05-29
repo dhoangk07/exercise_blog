@@ -18,4 +18,8 @@ module UsersHelper
   def newspaper_count(user)
     Newspaper.where(user_id: user.id).count
   end
+
+  def current_user_full_name
+    current_user.first_name + " " + current_user.last_name
+  end
 end

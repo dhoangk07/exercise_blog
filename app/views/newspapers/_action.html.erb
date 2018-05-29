@@ -23,7 +23,7 @@
         <span class="likes-count-<%= newspaper.id %>"><%= newspaper.get_upvotes.size %></span>
       </div>
       
-      <% if newspaper.user == current_user && current_user.role == 'admin' %>
+      <% if newspaper.user == current_user %>
         <%= link_to "Edit", edit_newspaper_path(newspaper), class: "btn btn-primary" %> 
         <%= link_to "Destroy", newspaper_path(newspaper),
                      method: :delete,
