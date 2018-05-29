@@ -13,13 +13,23 @@
            <%= raw newspaper.tags.map(&:name).map { |t| link_to t, tag_path(t), class: "btn btn-light tag-list"}.join(', ') %>
         </label>
       </div>
-      <%= link_to "Read More", newspaper_path(newspaper), class: "btn btn-primary"%> 
+      <div class="form-inline">
+        <%= link_to "Read More", newspaper_path(newspaper), class: "btn btn-primary"%> 
+        <%= link_to like_newspaper_path(newspaper), class: "like-btn", method: :put, remote: :true do %>
+          <div class="col-md-3">
+            <span><p><i class="fa fa-thumbs-up fa-2x"></i></p></span>
+          </div>
+        <% end %>
+        <span class="likes-count-<%= newspaper.id %>"><%= newspaper.get_upvotes.size %></span>
+      </div>
+      
       <% if newspaper.user == current_user && current_user.role == 'admin' %>
         <%= link_to "Edit", edit_newspaper_path(newspaper), class: "btn btn-primary" %> 
         <%= link_to "Destroy", newspaper_path(newspaper),
                      method: :delete,
                        data: { confirm: "Are you sure? "}, class: "btn btn-primary" %> 
       <% end %>
+      
 
       <!-- Modal -->
     </div>

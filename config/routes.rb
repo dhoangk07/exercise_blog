@@ -15,10 +15,14 @@ Rails.application.routes.draw do
       get :search, on: :collection
     end
 
+    resources :newspapers do 
+      member do
+        put "like" => "newspapers#vote"
+      end  
+    end
+
     get "nil", to: 'newspapers#nil', :as => :nil
   
     get 'tags/:tag', to: 'newspapers#index', as: :tag, :constraints  => { :tag => /[^\/]+/ }
-
   root to: "welcome#index"
-  end
- 
+end

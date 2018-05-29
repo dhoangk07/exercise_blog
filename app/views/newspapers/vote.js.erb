@@ -1,0 +1,6 @@
+<% if current_user.liked? @newspaper %>
+  $('.like-btn').addClass('liked');
+<% else %>
+  $('.like-btn').removeClass('liked');
+<% end %>
+$('.likes-count-<%= @newspaper.id %>').html("<%= @newspaper.get_upvotes.size %>")

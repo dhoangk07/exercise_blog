@@ -1,6 +1,6 @@
 class NewspapersController < ApplicationController
-  before_action :set_newspaper ,only: [:edit, :update, :show, :destroy]
-  before_action :authorize, except: [:show, :index, :nil]
+  before_action :set_newspaper ,only: [:edit, :update, :show, :destroy, :vote]
+  before_action :authorize, except: [:show, :index, :nil, :vote]
   def index
     @newspaper = Newspaper.new
     @tags = Tag.all
@@ -89,6 +89,14 @@ class NewspapersController < ApplicationController
 
   def set_newspaper
     @newspaper = Newspaper.find(params[:id])
+  end
+
+  def vote
+    if !current_user.liked? @newspaper
+      @newspaper.liked_by current_user
+    else current_user.liked? @newspaper
+      @newspaper.unliked_by current_user
+    end
   end
 
   private
