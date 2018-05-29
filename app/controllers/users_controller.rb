@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :destroy, :update, :edit]
+  before_action :set_user, only: %i(show destroy update edit)
   def index
 
     if params[:filter] == "admin" 
