@@ -106,6 +106,12 @@ class NewspapersController < ApplicationController
   def hide
     @newspaper = Newspaper.find(params[:id])
     @hide = @newspaper.hides.create(user_id: current_user.id)
+    @hidden_events = Hide.where(user_id: current_user)
+    @newspaper_id = @hidden_events.pluck(:newspaper_id)
+    @newspapers = Newspaper.where.not(id: @newspaper_id)
+    if params[:current_user].present?
+      @newspapers = current_user.newspapers.paginate(:page => params[:page], :per_page => 3)
+    end
     respond_to do |format|
       format.js
     end
