@@ -18,18 +18,24 @@ ActiveAdmin.register User do
     column :first_name
     column :last_name
     column :email
-    column :role
+    tag_column :role, interactive: true
+    # tag_column :status, interactive: true       
     column :image
     column :created_at
     column :updated_at
     actions
   end
 
+  show do
+  attributes_table do
+    tag_row :role
+  end
+end
+
     filter :id
     filter :first_name
     filter :last_name
     filter :email
-    # filter :role, filters: [:user, :admin]
     filter :role
     filter :image
     filter :created_at

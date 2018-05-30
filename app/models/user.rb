@@ -1,4 +1,11 @@
 class User < ApplicationRecord
+  extend Enumerize
+  enumerize :role, in: [:admin, :user], default: :user
+
+  # Rails Enum
+  # enum status: { active: 0, archived: 1 }
+
+
   acts_as_voter
   has_many :hides, dependent: :destroy
   has_many :unlikes, dependent: :destroy
