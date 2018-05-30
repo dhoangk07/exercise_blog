@@ -34,7 +34,6 @@ RSpec.describe "Modal form", :type => :request, js: true do
       expect(page).to have_content("Title can't be blank")
       expect(page).to have_content("Content can't be blank")
 
-      sleep 4
       expect(page).not_to have_content("2 errors prohibited this newspaper from being saved:")
       expect(page).not_to have_content("Title can't be blank")
       expect(page).not_to have_content("Content can't be blank")
