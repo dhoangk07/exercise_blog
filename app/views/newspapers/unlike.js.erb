@@ -1,0 +1,6 @@
+<% if current_user.disliked? @newspaper %>
+  $('.unlike-btn').addClass('disliked');
+<% else %>
+  $('.unlike-btn').removeClass('disliked');
+<% end %>
+$('.unlikes-count-<%= @newspaper.id %>').html("<%= @newspaper.get_dislikes.size %>")

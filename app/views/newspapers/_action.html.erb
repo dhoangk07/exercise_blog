@@ -15,12 +15,24 @@
       </div>
       <div class="form-inline">
         <%= link_to "Read More", newspaper_path(newspaper), class: "btn btn-primary"%> 
-        <%= link_to like_newspaper_path(newspaper), class: "like-btn", method: :put, remote: :true do %>
-          <div class="col-md-3">
-            <span><p><i class="fa fa-thumbs-up fa-2x"></i></p></span>
-          </div>
-        <% end %>
-        <span class="likes-count-<%= newspaper.id %>"><%= newspaper.get_upvotes.size %></span>
+
+        <div>
+          <%= link_to like_newspaper_path(newspaper), class: "like-btn", method: :put, remote: :true do %>
+            <div class="col-md-3">
+              <span><p><i class="fa fa-thumbs-up fa-2x"></i></p></span>
+              <span class="likes-count-<%= newspaper.id %>"><%= newspaper.get_upvotes.size %></span>
+            </div>
+          <% end %>
+        </div>
+
+        <div>
+          <%= link_to unlike_newspaper_path(newspaper), class: "unlike-btn", method: :put, remote: :true do %>
+            <div class="col-md-3">
+              <span><p><i class="fa fa-thumbs-down fa-2x"></i></p></span>
+              <span class="unlikes-count-<%= newspaper.id %>"><%= newspaper.get_dislikes.size %></span>
+            </div>
+          <% end %>
+        </div>
       </div>
       
       <% if newspaper.user == current_user %>

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :newspapers do 
       member do
         put "like" => "newspapers#vote"
+        put "unlike" => "newspapers#unlike"
       end  
     end
 
