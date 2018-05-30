@@ -34,17 +34,17 @@
         
         <% if user_signed_in? %>
           <li class="nav-item">
-            <% if @newspaper.present? %>
-              <%= link_to current_user_full_name, newspapers_path(filter: current_user), class: "nav-link" %> 
-            <% end %>
+            <%= link_to "Private Newspapers", hidden_newspapers_path, class: "nav-link #{active_class("newspapers", "hidden")}" %> 
           </li>
-           <li class="nav-item">
+          <li>
+            <%= link_to current_user_full_name, newspapers_path(filter: current_user), class: "nav-link" %> 
+          </li>
+          <li class="nav-item">
             <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "nav-link" %> 
           </li>
         <%else %>
-            <li><%= link_to "Sign In", user_session_path, class: "nav-link" %></li>
-            <li><%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %></li>
-          </div>
+          <li><%= link_to "Sign In", user_session_path, class: "nav-link" %></li>
+          <li><%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %></li>
         <% end %>
       </ul>
     </div>
