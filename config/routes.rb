@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get :search, on: :collection
       get :hide, on: :member
       get :hidden, on: :collection
+      get :display, on: :member
     end
 
     resources :users do

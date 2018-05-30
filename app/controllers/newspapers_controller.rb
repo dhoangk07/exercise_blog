@@ -1,5 +1,5 @@
 class NewspapersController < ApplicationController
-  before_action :set_newspaper ,only: %i[edit update show destroy vote unlike hide]
+  before_action :set_newspaper ,only: %i[edit update show destroy vote unlike hide display]
   before_action :authorize, except: %i[show index nil vote unlike]
   def index
     @newspaper = Newspaper.new
@@ -118,11 +118,14 @@ class NewspapersController < ApplicationController
   end
 
   def hidden
-    @hidden_events = Hide.where(user_id: current_user)
-    @newspaper_id = @hidden_events.pluck(:newspaper_id)
     @hidden_newspapers = Hide.where(user_id: current_user)
     @newspaper_id = @hidden_newspapers.pluck(:newspaper_id)
     @newspapers = Newspaper.where(id: @newspaper_id).paginate(:page => params[:page], :per_page => 3)
+  end
+
+  def display
+    Hide.where(:user_id =>current_user, :newspaper_id => params[:id]).destroy_all
+    redirect_to hidden_newspapers_path
   end
 
   private
