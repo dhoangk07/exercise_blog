@@ -120,6 +120,8 @@ class NewspapersController < ApplicationController
   def hidden
     @hidden_events = Hide.where(user_id: current_user)
     @newspaper_id = @hidden_events.pluck(:newspaper_id)
+    @hidden_newspapers = Hide.where(user_id: current_user)
+    @newspaper_id = @hidden_newspapers.pluck(:newspaper_id)
     @newspapers = Newspaper.where(id: @newspaper_id).paginate(:page => params[:page], :per_page => 3)
   end
 
