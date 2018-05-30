@@ -20,21 +20,33 @@ RSpec.describe Newspaper, :type => :model do
     title = Faker::Lorem.sentence(2)
     content = Faker::Lorem.words(10).join(" ") 
 
-    subject { described_class.new(title: title, content: content, user_id: user.id) }
+    let(:newspaper) {Newspaper.create(title: title, content: content, user_id: user.id)}
+
+    # subject { described_class.new(title: title, content: content, user_id: user.id) }
+
+    describe "attributes" do
+      it{ expect(newspaper).to validate_presence_of :title}
+      it{ expect(newspaper).to validate_presence_of :content}
+
+      it "save attributes" do
+        newspaper.save!
+        expect(newspaper).to be_valid
+      end
+    end
 
     describe "Validations" do
       it "is valid with valid attributes" do
-        expect(subject).to be_valid
+        expect(newspaper).to be_valid
       end
 
       it "is not valid without a title" do
-        subject.title = nil
-        expect(subject).to_not be_valid
+        newspaper.title = nil
+        expect(newspaper).to_not be_valid
       end
 
       it "is not valid without a content" do
-        subject.content = nil
-        expect(subject).to_not be_valid
+        newspaper.content = nil
+        expect(newspaper).to_not be_valid
       end
 
     end
