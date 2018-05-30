@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :comments
       get :search, on: :collection
       get :hide, on: :member
+      get :hidden, on: :collection
     end
 
     resources :users do

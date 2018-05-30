@@ -1,6 +1,6 @@
 class NewspapersController < ApplicationController
-  before_action :set_newspaper ,only: [:edit, :update, :show, :destroy, :vote, :unlike]
-  before_action :authorize, except: [:show, :index, :nil, :vote, :unlike]
+  before_action :set_newspaper ,only: %i[edit update show destroy vote unlike hide]
+  before_action :authorize, except: %i[show index nil vote unlike]
   def index
     @newspaper = Newspaper.new
     @tags = Tag.all
@@ -109,6 +109,12 @@ class NewspapersController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+
+  def hidden
+    @hidden_events = Hide.where(user_id: current_user)
+    @newspaper_id = @hidden_events.pluck(:newspaper_id)
+    @newspapers = Newspaper.where(id: @newspaper_id).paginate(:page => params[:page], :per_page => 3)
   end
 
   private

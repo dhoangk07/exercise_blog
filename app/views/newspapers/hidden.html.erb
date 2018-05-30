@@ -1,0 +1,18 @@
+<div class="col-md-7" >
+    
+  <h1 class="my-4-title">This is private newspaper of <%= current_user_full_name%>
+  </h1>
+    
+  <% @newspapers.each do |newspaper| %>
+<!-- Blog Post -->
+    <%= render 'action', newspaper: newspaper %>
+
+  <% end %>
+  <!-- Pagination -->
+  <div class="row pagination" align="center">
+    <%= will_paginate @newspapers, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+  </div>
+  <!-- Pagination -->
+</div>
+
+
