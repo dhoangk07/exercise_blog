@@ -28,12 +28,8 @@
       <ul class="navbar-nav ml-auto">
         <% if admin_only %>
           <li class="nav-item">
-            <a><%= link_to "Admin", users_path(filter: "admin"), class: "nav-link " %> </a>
+            <a><%= link_to "Admin", admin_root_path, class: "nav-link " %> </a>
           </li>
-          <li class="nav-item">
-            <a><%= link_to "User", users_path(filter: "user"), class: "nav-link " %> </a>
-          </li>
-          
         <% end %>
         
         <% if user_signed_in? %>
