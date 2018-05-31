@@ -28,7 +28,10 @@ class User < ApplicationRecord
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
-      user.name = auth.info.name
+      # user.name = auth.info.name
+      user.first_name = auth.info.first_name
+      user.last_name = auth.info.last_name
+
       # parse_name(user, auth.info.name)
 
       # assuming the user model has a name
@@ -39,17 +42,11 @@ class User < ApplicationRecord
     end
   end
 
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-
   validates :first_name, presence: true, unless: -> { from_facebook? }
 
   validates :last_name, presence: true, unless: -> { from_facebook? }
 
-  validates  :email,     :presence   => true,
-            :format                 => { with: VALID_EMAIL_REGEX },
-            :uniqueness             => {:case_sensitive => false}
-
-  validates  :password,  :presence   => true,
+  validates  :password, :presence   => true,
             :confirmation           => true,
             :length                 => {:within => 6..40}, :on => :create
 
