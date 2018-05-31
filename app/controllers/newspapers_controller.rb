@@ -5,29 +5,30 @@ class NewspapersController < ApplicationController
     @newspaper = Newspaper.new
     @tags = Tag.all
     @taggings = Tagging.all
+    @newspapers = Newspaper.where.not(id: Hide.pluck(:newspaper_id))
     @newspapers = if params[:tag]
-    @newspapers = Newspaper.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 3)
+    @newspapers = @newspapers.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 3)
     elsif params[:filter].present?
       @newspapers = User.find(params[:filter]).newspapers.paginate(:page => params[:page], :per_page => 3)
     elsif params[:filter_tag].present?
       if @tagging.present?
         newspaper_id = Tagging.find_by(id: params[:filter_tag]).newspaper_id
-        @newspapers = Newspaper.where(id: newspaper_id).paginate(:page => params[:page], :per_page => 3)
+        @newspapers = @newspapers.where(id: newspaper_id).paginate(:page => params[:page], :per_page => 3)
       else
         redirect_to nil_path
       end
     elsif params[:current_user].present?
-      @newspapers = current_user.newspapers
+      @newspapers = current_user.Newspaper.where.not(id: Hide.pluck(:newspaper_id))
     elsif params[:order] == "oldest"
-      @newspaper = Newspaper.order("created_at DESC").paginate(:page => params[:page], :per_page => 3)
+      @newspaper = @newspapers.order("created_at DESC").paginate(:page => params[:page], :per_page => 3)
     elsif params[:order] == "newest"
-      @newspaper = Newspaper.order("created_at ASC").paginate(:page => params[:page], :per_page => 3)
+      @newspaper = @newspapers.order("created_at ASC").paginate(:page => params[:page], :per_page => 3)
     elsif params[:order] == "alphabet"
-      @newspaper = Newspaper.order("title ASC").paginate(:page => params[:page], :per_page => 3)
+      @newspaper = @newspapers.order("title ASC").paginate(:page => params[:page], :per_page => 3)
     elsif params[:order] == "like"
-      @newspaper = Newspaper.order("created_at DESC").paginate(:page => params[:page], :per_page => 3)
+      @newspaper = @newspapers.order("created_at DESC").paginate(:page => params[:page], :per_page => 3)
     else
-      @newspapers = Newspaper.order('created_at DESC').paginate(:page => params[:page], :per_page => 3)
+      @newspapers = @newspapers.order('created_at DESC').paginate(:page => params[:page], :per_page => 3)
     end
   end
 
@@ -106,12 +107,6 @@ class NewspapersController < ApplicationController
   def hide
     @newspaper = Newspaper.find(params[:id])
     @hide = @newspaper.hides.create(user_id: current_user.id)
-    @hidden_events = Hide.where(user_id: current_user)
-    @newspaper_id = @hidden_events.pluck(:newspaper_id)
-    @newspapers = Newspaper.where.not(id: @newspaper_id)
-    if params[:current_user].present?
-      @newspapers = current_user.newspapers.paginate(:page => params[:page], :per_page => 3)
-    end
     respond_to do |format|
       format.js
     end
