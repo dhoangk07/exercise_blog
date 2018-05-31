@@ -24,19 +24,22 @@ class User < ApplicationRecord
     end
   end
 
-def self.from_omniauth(auth)
-  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-    user.email = auth.info.email
-    user.password = Devise.friendly_token[0,20]
-    user.name = auth.info.name   # assuming the user model has a name
-    #user.image = auth.info.image # assuming the user model has an image
-    # If you are using confirmable and the provider(s) you use validate emails, 
-    # uncomment the line below to skip the confirmation emails.
-    # user.skip_confirmation!
-  end
-end
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      user.name = auth.info.name
+      # parse_name(user, auth.info.name)
 
-VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+      # assuming the user model has a name
+      #user.image = auth.info.image # assuming the user model has an image
+      # If you are using confirmable and the provider(s) you use validate emails, 
+      # uncomment the line below to skip the confirmation emails.
+      # user.skip_confirmation!
+    end
+  end
+
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :first_name, presence: true, unless: -> { from_facebook? }
 
@@ -56,7 +59,11 @@ VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   has_attached_file :image, styles: { medium: "300x300#", thumb: "100x100#", small: "70x70#" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
+  def split_name(name)
+    first_name = name.split(" ").first_name
 
+    last_name = name.split(" ").drop(1).join(" ")
+  end
 
   def self.search(search)
     if search
@@ -91,4 +98,10 @@ VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
       self
     end
   end
+  # private
+  #   def self.parse_name(user, name)
+  #     name_arr = name.split(“ “)
+  #     user.last_name = name_arr.pop
+  #     user.first_name = name_arr.join(“ “)
+  #   end
 end
