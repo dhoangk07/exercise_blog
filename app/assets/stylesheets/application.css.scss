@@ -229,3 +229,37 @@ input#search {
   margin-top: 8px;
   margin-right: 0px;
 }
+
+input#search-form {
+  width: 250px;
+}
+
+/*@media screen and (min-width:560px) and (max-width:1430px){
+  .btn-go{
+    display: none;
+  }
+}  */
+
+@media screen and  (min-width: 576px){
+  .btn-go{
+    display: none;
+  }
+  input#search-form {
+    width: 210px;
+  }
+  .my-4-title{
+    font-size: 30px;
+  }
+}
+
+@media screen and  (max-width: 764px){
+ /* .btn-go{
+    display: none;
+  }*/
+  input#search-form {
+    width: 450px;
+  }
+  .my-4-title{
+    font-size: 30px;
+  }
+}
