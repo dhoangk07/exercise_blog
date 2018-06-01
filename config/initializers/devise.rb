@@ -284,5 +284,4 @@ Devise.setup do |config|
 
   config.secret_key = '8624ea125099653dc6ba57fa68356925798cb4371baf1b3105b53f7171722451a0a411a7d1be2acb6aaeeeb22ac15811db933637e4e435697e7846c84afa0cff'
   config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], callback_url: "#{ENV['SSL_HOST']}/users/auth/facebook/callback"
-  config.omniauth :google, ENV['GOOGLE_KEY'], ENV['GOOGLE_SECRET'], callback_url: "http://localhost:3000/auth/google_oauth2/callback"
 end
