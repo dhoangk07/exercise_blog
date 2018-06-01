@@ -3,7 +3,7 @@
     <%= image_tag newspaper.avatar_url_newspaper, class: "Card image cap" %>
     <div class="img-fluid card-body ">
       <h2 class="card-title"><%= link_to newspaper.title, newspaper_path(newspaper) %></h2>
-      <p class="card-text"><%= truncate newspaper.content, length: 200 %></p>
+      <p class="card-text"><%= truncate newspaper.content.html_safe, length: 200 %></p>
 
       <!-- Button trigger modal -->
 
