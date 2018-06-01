@@ -9,9 +9,16 @@ Rails.application.routes.draw do
     resources :newspapers do
       resources :comments
       get :search, on: :collection
-      get :hide, on: :member
-      get :hidden, on: :collection
-      get :display, on: :member
+      # get :hide, on: :member
+      # get :hidden, on: :collection
+      # get :display, on: :member
+    end
+
+
+    resources :newspapers do
+      get :private_post, on: :member
+      get :private_zone, on: :collection
+      get :public_post, on: :member
     end
 
     resources :users do
