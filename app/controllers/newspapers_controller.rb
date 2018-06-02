@@ -1,6 +1,6 @@
 class NewspapersController < ApplicationController
-  before_action :set_newspaper ,only: %i[edit update show destroy vote unlike hide display private_post public_post]
-  before_action :authorize, except: %i[show index nil vote unlike]
+  before_action :set_newspaper ,only: %i[edit update show destroy vote unlike hide display private_post public_post react]
+  before_action :authorize, except: %i[show index nil vote unlike react]
   def index
     @newspaper = Newspaper.new
     @tags = Tag.all
@@ -142,12 +142,19 @@ class NewspapersController < ApplicationController
     end
   end
 
+  def react
+    @reacts = React.create(user_id: current_user.id, newspaper_id: params[:id], reaction: params[:reaction])
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
     def set_newspaper
       @newspaper = Newspaper.find(params[:id])
     end
 
     def newspaper_params
-      params.require(:newspaper).permit(:title, :content, :search, :tag_list, :image)
+      params.require(:newspaper).permit(:title, :content, :search, :tag_list, :image, :reaction)
     end
 end

@@ -16,6 +16,63 @@
       <div class="form-inline">
         <%= link_to "Read More", newspaper_path(newspaper), class: "btn btn-primary"%> 
 
+
+      <button type="button" class="btn btn-primary like-btn" data-toggle="modal" data-target="#exampleModalCenter">
+        <div>
+          <%= link_to like_newspaper_path(newspaper)%>
+            <div class="col-md-3">
+              <span><p><i class="fa fa-thumbs-up fa-2x"></i></p></span>
+              <span class="likes-count-<%= newspaper.id %>"><%= newspaper.get_upvotes.size %></span>
+            </div>
+        </div>
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">
+              
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button> 
+            </div>
+            <div class="modal-body">
+              <%= link_to react_newspaper_path(newspaper, reaction: :like), method: :put, remote: :true do %>
+                <%= image_tag "https://mir-s3-cdn-cf.behance.net/project_modules/disp/e4299734559659.56d57de04bda4.gif", class: "reaction-modal like-btn-modal" %>
+              <%end%>
+
+               <%= link_to react_newspaper_path(newspaper, reaction: :love), method: :put, remote: :true do %>
+                <%= image_tag "https://mir-s3-cdn-cf.behance.net/project_modules/disp/65ea2034559659.56d57de06cea2.gif", class: "reaction-modal" %>
+              <%end%>
+
+              <%= link_to react_newspaper_path(newspaper, reaction: :haha), method: :put, remote: :true do %>
+                <%= image_tag "https://mir-s3-cdn-cf.behance.net/project_modules/disp/35c9bf34559659.56d57de0eb467.gif", class: "reaction-modal" %>
+              <%end%>
+
+              <%= link_to react_newspaper_path(newspaper, reaction: :wow), method: :put, remote: :true do %>
+                <%= image_tag "https://mir-s3-cdn-cf.behance.net/project_modules/disp/6105c734559659.56d59c54f0d05.gif", class: "reaction-modal" %>
+              <%end%>
+
+              <%= link_to react_newspaper_path(newspaper, reaction: :sad), method: :put, remote: :true do %>
+                <%= image_tag "https://mir-s3-cdn-cf.behance.net/project_modules/disp/3eee1d34559659.56d59de621daa.gif", class: "reaction-modal" %>
+              <%end%>
+
+              <%= link_to react_newspaper_path(newspaper, reaction: :angry), method: :put, remote: :true do %>
+                <%= image_tag "https://mir-s3-cdn-cf.behance.net/project_modules/disp/e66e6e34559659.56d57de095aee.gif", class: "reaction-modal" %>
+              <%end%>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
         <div>
           <%= link_to like_newspaper_path(newspaper), class: "like-btn", method: :put, remote: :true do %>
             <div class="col-md-3">

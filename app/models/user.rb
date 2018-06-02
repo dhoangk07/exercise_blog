@@ -4,11 +4,11 @@ class User < ApplicationRecord
 
   # Rails Enum
   # enum status: { active: 0, archived: 1 }
-
-
   acts_as_voter
   has_many :hides, dependent: :destroy
   has_many :unlikes, dependent: :destroy
+  has_many :reacts, dependent: :destroy
+
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

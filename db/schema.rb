@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_01_080247) do
+ActiveRecord::Schema.define(version: 2018_06_02_093444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,17 @@ ActiveRecord::Schema.define(version: 2018_06_01_080247) do
     t.integer "cached_weighted_total", default: 0
     t.float "cached_weighted_average", default: 0.0
     t.boolean "published"
+    t.string "reaction"
+  end
+
+  create_table "reacts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "newspaper_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "reaction"
+    t.index ["newspaper_id"], name: "index_reacts_on_newspaper_id"
+    t.index ["user_id"], name: "index_reacts_on_user_id"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -178,6 +189,8 @@ ActiveRecord::Schema.define(version: 2018_06_01_080247) do
   add_foreign_key "comments", "newspapers"
   add_foreign_key "hides", "newspapers"
   add_foreign_key "hides", "users"
+  add_foreign_key "reacts", "newspapers"
+  add_foreign_key "reacts", "users"
   add_foreign_key "taggings", "newspapers"
   add_foreign_key "taggings", "tags"
   add_foreign_key "unlikes", "newspapers"

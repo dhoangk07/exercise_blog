@@ -17,12 +17,13 @@ Rails.application.routes.draw do
       resources :comments
       get :search, on: :collection
       get :private_zone, on: :collection
-      
+
       member do
         put "like" => "newspapers#vote"
         put "unlike" => "newspapers#unlike"
         get :private_post
         get :public_post
+        put :react 
       end  
     end
 
