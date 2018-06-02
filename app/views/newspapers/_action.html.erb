@@ -41,11 +41,11 @@
           <%= link_to "Destroy", newspaper_path(newspaper),
                        method: :delete,
                          data: { confirm: "Are you sure? "}, class: "btn btn-primary" %> 
-          <% if params[:action] === "index" %>
-            <%= link_to "Private", private_post_newspaper_path(newspaper), class: "btn btn-primary" %>
-          <% elsif params[:action] === "private" %>
-            <%= link_to "Public", public_post_newspaper_path(newspaper), class: "btn btn-primary" %>
-          <% end %>
+          <%# if params[:action] === "index" %>
+          <%= link_to "Private", private_post_newspaper_path(newspaper), class: "btn btn-primary" %>
+          <%# elsif params[:action] === "private" %>
+            <%#= link_to "Public", private_post_newspapers_path(asd: 'asdads'), class: "btn btn-primary" %>
+          <%# end %>
       <% end %>
 
 

@@ -1,5 +1,5 @@
 class NewspapersController < ApplicationController
-  before_action :set_newspaper ,only: %i[edit update show destroy vote unlike hide display private_post public_post private_zone]
+  before_action :set_newspaper ,only: %i[edit update show destroy vote unlike hide display private_post public_post]
   before_action :authorize, except: %i[show index nil vote unlike]
   def index
     @newspaper = Newspaper.new
@@ -132,9 +132,9 @@ class NewspapersController < ApplicationController
     redirect_to private_zone_newspapers_path
   end
 
-  def private_zone
-    erfer
-  end
+  # def private_zone
+  #   erfer
+  # end
 
   def public_post
     if @newspapers = @newspaper.update(published: false)
