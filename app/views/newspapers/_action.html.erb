@@ -17,7 +17,8 @@
         <%= link_to "Read More", newspaper_path(newspaper), class: "btn btn-primary"%> 
 
 
-      <button type="button" class="btn btn-primary like-btn" data-toggle="modal" data-target="#exampleModalCenter">
+        <div class="button-react-modal"> </div>
+      <button type="button" class="btn btn-primary like-btn" data-toggle="modal" data-target="#modal<%=newspaper.id%>" >
         <div>
           <%= link_to like_newspaper_path(newspaper)%>
             <div class="col-md-3">
@@ -28,7 +29,7 @@
       </button>
 
       <!-- Modal -->
-      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal fade" id="modal<%=newspaper.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
