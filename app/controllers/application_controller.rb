@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include ReactsHelper  
   def authorize
     if current_user.nil?
       redirect_to edit_user_registration_path, alert: "Not authorized! Please log in"
