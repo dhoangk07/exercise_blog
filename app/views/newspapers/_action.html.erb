@@ -1,4 +1,4 @@
-<div id="action-group" class="newspaper-wrapper">
+<div id="action-group-<%=newspaper.id%>" class="newspaper-wrapper" >
   <div class="card mb-4" id="body-of-newspaper">
     <%= image_tag newspaper.avatar_url_newspaper, class: "Card image cap" %>
     <div class="img-fluid card-body ">
@@ -16,14 +16,13 @@
       <div class="form-inline">
         <%= link_to "Read More", newspaper_path(newspaper), class: "btn btn-primary"%> 
 
-
         <div class="button-react-modal"> </div>
       <button type="button" class="btn btn-primary like-btn" data-toggle="modal" data-target="#modal<%=newspaper.id%>" >
         <div>
           <%= link_to like_newspaper_path(newspaper)%>
-            <div class="col-md-3">
+            
+            <div>
               <span><p><i class="fa fa-thumbs-up fa-2x"></i></p></span>
-              <span class="likes-count-<%= newspaper.id %>"><%= newspaper.get_upvotes.size %></span>
             </div>
         </div>
       </button>
