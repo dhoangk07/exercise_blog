@@ -16,7 +16,13 @@
       <div class="form-inline">
         <%= link_to "Read More", newspaper_path(newspaper), class: "btn btn-primary"%> 
 
-        <div class="button-react-modal"> </div>
+      <div class="button-react-modal"> </div>
+      <div> 
+        <% if reacted?(current_user, newspaper) %>
+          <% @react = React.where(user_id: current_user.id, newspaper_id: newspaper.id).first %>
+          <%= render "icon_react", reaction: @react.reaction %>
+        <% end %>
+      </div>
       <button type="button" class="btn btn-primary like-btn" data-toggle="modal" data-target="#modal<%=newspaper.id%>" >
         <div>
           <%= link_to like_newspaper_path(newspaper)%>
