@@ -12,7 +12,7 @@ RSpec.describe ReactsHelper, :type => :helper do
   let(:newspaper) {Newspaper.create(title: title, content: content, user_id: user.id)}
   let(:newspaper_2) {Newspaper.create(title: title_2, content: content, user_id: user.id)}
   let(:reaction) {"like"}
-    
+
   describe "reacted?" do
     context 'when user already react with one newspaper ' do
       let!(:react) {React.create(user_id: user.id, newspaper_id: newspaper.id, reaction: reaction)}
@@ -28,4 +28,20 @@ RSpec.describe ReactsHelper, :type => :helper do
       end
     end
   end
+  
+  describe "reacted_by" do
+    it "should create new react " do
+      expect(helper.reacted_by(user, newspaper, reaction)).to be_a_kind_of(React) 
+    end
+  end
+
+  describe "unreacted_by" do
+    it "should delete existing react " do
+      React.create(user_id: user.id, newspaper_id: newspaper.id)
+      helper.unreacted_by(user, newspaper)
+      expect(React.where(user_id: user.id, newspaper_id: newspaper.id)).to be_blank
+    end
+  end
 end
+
+
