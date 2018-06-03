@@ -143,7 +143,11 @@ class NewspapersController < ApplicationController
   end
 
   def react
-    @reacts = React.create(user_id: current_user.id, newspaper_id: params[:id], reaction: params[:reaction])
+    if reacted?(current_user, @newspaper)
+      unreacted_by(current_user, @newspaper)
+    else 
+      reacted_by(current_user, @newspaper, params[:reaction])
+    end
     respond_to do |format|
       format.js
     end
