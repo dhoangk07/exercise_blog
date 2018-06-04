@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     #   # get :display, on: :member
     # end
 
-
     resources :newspapers do
       resources :comments
       get :search, on: :collection

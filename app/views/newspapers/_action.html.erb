@@ -76,15 +76,15 @@
 
 
       <% if newspaper.user == current_user %>
-          <%= link_to "Edit", edit_newspaper_path(newspaper), class: "btn btn-primary" %> 
-          <%= link_to "Destroy", newspaper_path(newspaper),
-                       method: :delete,
-                         data: { confirm: "Are you sure? "}, class: "btn btn-primary" %> 
-          <%# if params[:action] === "index" %>
+        <%= link_to "Edit", edit_newspaper_path(newspaper), class: "btn btn-primary" %> 
+        <%= link_to "Destroy", newspaper_path(newspaper),
+                     method: :delete,
+                       data: { confirm: "Are you sure? "}, class: "btn btn-primary" %> 
+        <% if params[:action] === "index" %>
           <%= link_to "Private", private_post_newspaper_path(newspaper), class: "btn btn-primary" %>
-          <%# elsif params[:action] === "private" %>
-            <%#= link_to "Public", private_post_newspapers_path(asd: 'asdads'), class: "btn btn-primary" %>
-          <%# end %>
+        <% elsif params[:action] === "private_zone" %>
+          <%= link_to "Public", public_post_newspaper_path(newspaper), class: "btn btn-primary" %>
+        <% end %>
       <% end %>
 
       <!-- Modal -->

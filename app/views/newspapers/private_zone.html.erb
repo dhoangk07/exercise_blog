@@ -1,0 +1,14 @@
+<div class="col-md-7" >
+  <div class="row">
+    <h1 class="my-4-title col-md-8" id="blog-title">Hoang's Blog
+      <small>Newspaper</small> 
+    </h1>
+    
+  </div>
+  <% @newspapers.each do |newspaper| %>
+    <%= render 'action', newspaper: newspaper %>
+  <% end %>
+  <div class="row pagination" align="center">
+    <%= will_paginate @newspapers, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+  </div>
+</div>

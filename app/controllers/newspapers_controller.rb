@@ -1,18 +1,16 @@
 class NewspapersController < ApplicationController
-  before_action :set_newspaper ,only: %i[edit update show destroy vote unlike hide display private_post public_post react]
+  before_action :set_newspaper ,only: %i[edit update show destroy vote unlike hide display private_post public_post react ]
   before_action :authorize, except: %i[show index nil vote unlike react]
   def index
     @newspaper = Newspaper.new
     @tags = Tag.all
     @taggings = Tagging.all
-    # @newspapers = Newspaper.where.not(id: Hide.pluck(:newspaper_id))
-    @newspapers = Newspaper.where(published: true)
+    @newspapers = Newspaper.order("created_at DESC").where(published: false)
 
     @newspapers = if params[:tag]
     @newspapers = @newspapers.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 3)
     elsif params[:filter].present?
-      # @newspapers = User.find(params[:filter]).newspapers.paginate(:page => params[:page], :per_page => 3)
-      @newspapers = current_user.newspapers.paginate(:page => params[:page], :per_page => 3)
+      @newspapers = current_user.newspapers.where(published: false).paginate(:page => params[:page], :per_page => 3)
     elsif params[:filter_tag].present?
       if @tagging.present?
         newspaper_id = Tagging.find_by(id: params[:filter_tag]).newspaper_id
@@ -21,7 +19,6 @@ class NewspapersController < ApplicationController
         redirect_to nil_path
       end
     elsif params[:current_user].present?
-      # @newspapers = current_user.Newspaper.where.not(id: Hide.pluck(:newspaper_id))
     elsif params[:order] == "oldest"
       @newspaper = @newspapers.order("created_at DESC").paginate(:page => params[:page], :per_page => 3)
     elsif params[:order] == "newest"
@@ -84,7 +81,7 @@ class NewspapersController < ApplicationController
   end
 
   def search
-    @newspapers = Newspaper.search(params[:search]).paginate(:page => params[:page], :per_page => 3)
+    @newspapers = Newspaper.search(params[:search]).where(published: false).paginate(:page => params[:page], :per_page => 3)
     respond_to do |format|
       format.js
       format.html { redirect_to @newspaper }
@@ -128,16 +125,22 @@ class NewspapersController < ApplicationController
 
   def private_post
     @newspapers = @newspaper.update(published: true)
-    redirect_to private_zone_newspapers_path
+    # redirect_to private_zone_newspapers_path
+    # if params[:filter] == "current_user"
+      redirect_to newspapers_path(filter: current_user)
+    # else 
+    #   redirect_to newspapers_path
+    # end
   end
 
-  # def private_zone
-  #   erfer
-  # end
+  def private_zone
+    @newspaper = Newspaper.where(published: true).order("created_at DESC").paginate(:page => params[:page], :per_page => 3)
+    @newspapers = @newspaper.all
+  end
 
   def public_post
     if @newspapers = @newspaper.update(published: false)
-      redirect_to newspapers_path
+      redirect_to private_zone_newspapers_path
     end
   end
 

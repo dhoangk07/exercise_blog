@@ -36,7 +36,7 @@
         
         <% if user_signed_in? %>
           <li >
-            <%= link_to "Private Newspapers", private_zone_newspapers_path,class: "nav-link" %>
+            <%= link_to "Private Zone", private_zone_newspapers_path, class: "nav-link" %>
           </li>
           <li>
             <%= link_to current_user_full_name, newspapers_path(filter: current_user), class: "nav-link" %> 
