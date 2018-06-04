@@ -81,7 +81,7 @@
                      method: :delete,
                        data: { confirm: "Are you sure? "}, class: "btn btn-primary" %> 
         <% if params[:action] === "index" %>
-          <%= link_to "Private", private_post_newspaper_path(newspaper), class: "btn btn-primary" %>
+          <%= link_to "Private", private_post_newspaper_path(newspaper, filter: params[:filter]), class: "btn btn-primary" %>
         <% elsif params[:action] === "private_zone" %>
           <%= link_to "Public", public_post_newspaper_path(newspaper), class: "btn btn-primary" %>
         <% end %>

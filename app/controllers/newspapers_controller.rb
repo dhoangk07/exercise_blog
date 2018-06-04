@@ -125,12 +125,6 @@ class NewspapersController < ApplicationController
 
   def private_post
     @newspapers = @newspaper.update(published: true)
-    # redirect_to private_zone_newspapers_path
-    # if params[:filter] == "current_user"
-      redirect_to newspapers_path(filter: current_user)
-    # else 
-    #   redirect_to newspapers_path
-    # end
     redirect_to request.referrer
   end
 
@@ -144,6 +138,17 @@ class NewspapersController < ApplicationController
       redirect_to private_zone_newspapers_path
     end
   end
+
+  # def react
+  #   if reacted?(current_user, @newspaper)
+  #     unreacted_by(current_user, @newspaper)
+  #   else 
+  #     reacted_by(current_user, @newspaper, params[:reaction])
+  #   end
+  #   respond_to do |format|
+  #     format.js
+  #   end
+  # end
 
   def react
     if current_user.reacted? @newspaper
