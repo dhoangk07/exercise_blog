@@ -16,37 +16,34 @@
       <div class="form-inline">
         <%= link_to "Read More", newspaper_path(newspaper), class: "btn btn-primary"%> 
 
+      
+     
+      <button type="button" class=" like-btn" data-toggle="modal" data-target="#modal<%=newspaper.id%>" >
+        <img class="reaction-modal" src="/assets/like_icon.gif">
+        <% if params[:reaction] == "like" && params[:action] =="react"%>
+          <%= count_reaction(newspaper, "#{reaction}") %>
+        <% end %>
+      </button>
       <div class="button-react-modal"> </div>
       <div> 
         <% if reacted?(current_user, newspaper) %>
           <% @react = React.where(user_id: current_user.id, newspaper_id: newspaper.id).first %>
-          <%= render "icon_react", reaction: @react.reaction %>
+          <%= render "icon_react", reaction: @react.reaction, newspaper: newspaper %>
         <% end %>
       </div>
-      <button type="button" class="btn btn-primary like-btn" data-toggle="modal" data-target="#modal<%=newspaper.id%>" >
-        <div>
-          <%= link_to like_newspaper_path(newspaper)%>
-            
-            <div>
-              <span><p><i class="fa fa-thumbs-up fa-2x"></i></p></span>
-            </div>
-        </div>
-      </button>
 
       <!-- Modal -->
       <div class="modal fade" id="modal<%=newspaper.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalCenterTitle">
-              
-              </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button> 
             </div>
+
             <div class="modal-body">
-              <%= link_to react_newspaper_path(newspaper, reaction: :like), method: :put, remote: :true do %>
+              <%= link_to react_newspaper_path(newspaper, reaction: :like ), class: "like-btn-wrapper" , method: :put, remote: :true do %>
                 <%= image_tag "https://mir-s3-cdn-cf.behance.net/project_modules/disp/e4299734559659.56d57de04bda4.gif", class: "reaction-modal like-btn-modal" %>
               <%end%>
 
@@ -69,33 +66,12 @@
               <%= link_to react_newspaper_path(newspaper, reaction: :angry), method: :put, remote: :true do %>
                 <%= image_tag "https://mir-s3-cdn-cf.behance.net/project_modules/disp/e66e6e34559659.56d57de095aee.gif", class: "reaction-modal" %>
               <%end%>
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>
       </div>
 
-        <div>
-          <%= link_to like_newspaper_path(newspaper), class: "like-btn", method: :put, remote: :true do %>
-            <div class="col-md-3">
-              <span><p><i class="fa fa-thumbs-up fa-2x"></i></p></span>
-              <span class="likes-count-<%= newspaper.id %>"><%= newspaper.get_upvotes.size %></span>
-            </div>
-          <% end %>
-        </div>
-
-        <div>
-          <%= link_to unlike_newspaper_path(newspaper), class: "unlike-btn", method: :put, remote: :true do %>
-            <div class="col-md-3">
-              <span><p><i class="fa fa-thumbs-down fa-2x"></i></p></span>
-              <span class="unlikes-count-<%= newspaper.id %>"><%= newspaper.get_dislikes.size %></span>
-            </div>
-          <% end %>
-        </div>
+        
       </div>
 
 
@@ -110,14 +86,6 @@
             <%#= link_to "Public", private_post_newspapers_path(asd: 'asdads'), class: "btn btn-primary" %>
           <%# end %>
       <% end %>
-
-
-
-
-
-
-
-
 
       <!-- Modal -->
     </div>

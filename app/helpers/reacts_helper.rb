@@ -10,4 +10,8 @@ module ReactsHelper
   def unreacted_by(user, newspaper)
     React.where(user_id: user.id, newspaper_id: newspaper.id).destroy_all
   end
+
+  def count_reaction(newspaper, reaction)
+    React.where(newspaper_id: newspaper.id, reaction: reaction).count
+  end
 end

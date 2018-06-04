@@ -1,3 +1,3 @@
-$("#action-group-<%=@newspaper.id %> .button-react-modal").html('<%= j(render "icon_react", reaction: params[:reaction]) %>');
+$("#action-group-<%=@newspaper.id %> .button-react-modal").html('<%= j(render "icon_react", reaction: params[:reaction], newspaper: @newspaper) %>');
 $('.close').click();
 
