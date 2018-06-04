@@ -131,6 +131,7 @@ class NewspapersController < ApplicationController
     # else 
     #   redirect_to newspapers_path
     # end
+    redirect_to request.referrer
   end
 
   def private_zone
