@@ -6,7 +6,6 @@ class NewspapersController < ApplicationController
     @tags = Tag.all
     @taggings = Tagging.all
     # @newspapers = Newspaper.where.not(id: Hide.pluck(:newspaper_id))
-
     @newspapers = Newspaper.where(published: true)
 
     @newspapers = if params[:tag]

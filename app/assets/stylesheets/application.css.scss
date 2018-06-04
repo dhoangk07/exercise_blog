@@ -271,3 +271,12 @@ input#search-form {
 .reaction-modal{
   width: 50px
 }
+
+.fa-thumbs-up:before {
+  content: "\f164";
+  color: #106cd6;
+}
+
+.like-btn{
+  border: none;
+}
