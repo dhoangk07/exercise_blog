@@ -146,10 +146,10 @@ class NewspapersController < ApplicationController
   end
 
   def react
-    if reacted?(current_user, @newspaper)
-      unreacted_by(current_user, @newspaper)
+    if current_user.reacted? @newspaper
+      @newspaper.unreacted_by current_user
     else 
-      reacted_by(current_user, @newspaper, params[:reaction])
+      @newspaper.reacted_by(current_user, params[:reaction])
     end
     respond_to do |format|
       format.js

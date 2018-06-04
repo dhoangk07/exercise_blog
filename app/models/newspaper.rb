@@ -11,6 +11,14 @@ class Newspaper < ApplicationRecord
   has_many :unlikes, dependent: :destroy
   has_many :reacts, dependent: :destroy
 
+  def reacted_by(user, reaction)
+    React.create(user_id: user.id, newspaper_id: id, reaction: reaction)
+  end
+
+  def unreacted_by(user)
+    React.where(user_id: user.id, newspaper_id: id).destroy_all
+  end
+
   def self.tagged_with(name)
     Tag.find_by!(name: name).newspapers
   end
