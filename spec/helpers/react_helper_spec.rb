@@ -17,7 +17,7 @@ RSpec.describe ReactsHelper, :type => :helper do
     context 'when user already react with one newspaper ' do
       let!(:react) {React.create(user_id: user.id, newspaper_id: newspaper.id, reaction: reaction)}
       it "should return true " do
-        expect(helper.reacted?(user, newspaper)).to eq(true)
+        expect(helper.reacted?(user, newspaper))
         expect(helper.reacted?(user, newspaper_2)).to eq(false)
       end
     end
